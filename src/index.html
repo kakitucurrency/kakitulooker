@@ -5,7 +5,7 @@
         <title>Kakitu Looker</title>
         <meta name="description" content="A kakitu block explorer; explore the kakitu network." />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
         <base href="/" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/png" sizes="32x32" href="assets/kakitu-icon.png" />
@@ -13,8 +13,18 @@
 
         <!-- Google Analytics placeholder - replace G-XXXXXXXXXX with your own ID -->
         <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> -->
+        <script>
+            document.addEventListener('mousemove', function(e) {
+                var dot = document.getElementById('cursorDot');
+                if (dot) {
+                    dot.style.left = e.clientX + 'px';
+                    dot.style.top = e.clientY + 'px';
+                }
+            });
+        </script>
     </head>
     <body class="mat-typography mat-app-background">
+        <div class="cursor-dot" id="cursorDot"></div>
         <app-root></app-root>
     </body>
 </html>

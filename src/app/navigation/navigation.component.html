@@ -37,14 +37,28 @@
         <div class="navigation-app-bar-container">
             <mat-toolbar class="navigation-app-bar mat-elevation-z2" [class.home]="isHome()" color="primary" responsive>
                 <div style="display: flex; width: 100%; align-items: center">
-                    <button mat-icon-button (click)="openDrawer()" [style.marginRight.px]="vp.sm ? 16 : 24">
+                    <button mat-icon-button (click)="openDrawer()" [style.marginRight.px]="vp.sm ? 16 : 24" class="nav-menu-btn">
                         <mat-icon>menu</mat-icon>
                     </button>
                     <div responsive class="navigation-toolbar-title" (click)="goHome()">
-                        {{ vp.sm ? toolbarTitle : 'Kakitu Looker' }}
+                        <span class="nav-logo-text">{{ vp.sm ? toolbarTitle : 'KAKITU' }}</span>
                     </div>
                     <blui-spacer></blui-spacer>
+                    <div class="nav-inline-search" *ngIf="!vp.sm">
+                        <input
+                            class="nav-search-input"
+                            type="text"
+                            autocapitalize="none"
+                            placeholder="Search address or hash..."
+                            [(ngModel)]="appbarSearchText"
+                            (keyup)="appbarSearch($event)"
+                        />
+                        <button mat-icon-button (click)="appbarSearch({key: 'Enter'})" class="nav-search-icon-btn">
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </div>
                     <button
+                        *ngIf="vp.sm"
                         mat-icon-button
                         (click)="openSearch()"
                         [style.marginRight.px]="vp.sm ? 4 : 16"

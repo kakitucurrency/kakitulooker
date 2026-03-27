@@ -1,13 +1,24 @@
 <div class="app-page-root home-root">
-    <div class="home-body" responsive>
-        <div class="home-title" responsive>Kakitu Looker</div>
-        <img src="assets/spyglass.svg" class="home-spyglass-svg" responsive />
+    <!-- Hero Section -->
+    <div class="hero" responsive>
+        <div class="hero-glow"></div>
 
-        <div class="app-section-subtitle" style="text-align: center; margin-bottom: 8px">
-            Explore the kakitu network
+        <div class="hero-tag">
+            <span class="tag-line"></span>
+            // KSHS &middot; Kenyan Digital Shilling &middot; Live
         </div>
 
-        <div class="home-search-bar" responsive>
+        <h1>
+            <span class="solid">KAKI</span><span class="outline">TU</span><br />
+            <span class="outline">NET</span><span class="solid">WORK</span>
+        </h1>
+
+        <p class="hero-desc">
+            A transparent, real-time window into the Kakitu network. Explore blocks,
+            accounts, and transactions on Kenya's digital shilling infrastructure.
+        </p>
+
+        <div class="hero-search" responsive>
             <mat-form-field appearance="outline">
                 <mat-label>Address or Hash</mat-label>
                 <input
@@ -21,7 +32,7 @@
             </mat-form-field>
             <button
                 responsive
-                class="home-search-button"
+                class="hero-search-button"
                 mat-flat-button
                 color="accent"
                 [disabled]="loading || !searchFormControl.value"
@@ -33,14 +44,35 @@
                 </div>
             </button>
         </div>
+
+        <div class="ticker">
+            <div class="tick">
+                <div class="tick-val">~2s</div>
+                <div class="tick-lbl">Confirmation</div>
+            </div>
+            <div class="tick">
+                <div class="tick-val">0</div>
+                <div class="tick-lbl">Fee</div>
+            </div>
+            <div class="tick">
+                <div class="tick-val">Live</div>
+                <div class="tick-lbl">Blocks</div>
+            </div>
+            <div class="tick">
+                <div class="tick-val">KSHS</div>
+                <div class="tick-lbl">Reserve</div>
+            </div>
+        </div>
     </div>
 </div>
 
-<app-wave
-    *ngIf="!vp.sm"
-    [darkThemeWaveNumber]="1"
-    [lightThemeWaveNumber]="1"
-    [bottom]="-100"
-    maxHeight="750"
-></app-wave>
-<img *ngIf="vp.sm" style="margin-top: -200px" height="200" src="assets/waves/wave1.svg" />
+<div class="waves-section">
+    <app-wave
+        *ngIf="!vp.sm"
+        [darkThemeWaveNumber]="1"
+        [lightThemeWaveNumber]="1"
+        [bottom]="-100"
+        maxHeight="750"
+    ></app-wave>
+    <img *ngIf="vp.sm" style="margin-top: -200px" height="200" src="assets/waves/wave1.svg" />
+</div>
