@@ -28,12 +28,13 @@
         padding: 0 8px;
     }
     .navigation-toolbar-title {
-        font-weight: 400;
+        font-weight: 700;
         cursor: pointer;
-        font-family: pirateFont, 'Open Sans', 'Arial';
+        font-family: 'Montserrat', 'Open Sans', 'Arial';
         font-size: 36px;
+        letter-spacing: -0.5px;
         &.sm {
-            font-family: 'Open Sans';
+            font-family: 'Montserrat', 'Open Sans';
             font-size: 20px;
         }
     }
