@@ -42,7 +42,7 @@ import * as Highcharts from 'highcharts';
             responsive
             class="account-empty-state"
             title="Loading"
-            description="One second, counting them 'nanners.  Larger accounts will take longer."
+            description="One second, loading account data.  Larger accounts will take longer."
         >
             <mat-icon blui-empty-icon>pending</mat-icon>
         </blui-empty-state>
@@ -62,12 +62,12 @@ import * as Highcharts from 'highcharts';
             <mat-divider></mat-divider>
             <mat-list [style.paddingTop.px]="0">
                 <blui-info-list-item [wrapSubtitle]="true" divider="full" [hidePadding]="true">
-                    <div blui-title>Total BAN Sent</div>
-                    <div blui-subtitle>{{ formatBan(insights.totalAmountSentBan) }} BAN</div>
+                    <div blui-title>Total KSHS Sent</div>
+                    <div blui-subtitle>{{ formatBan(insights.totalAmountSentBan) }} KSHS</div>
                 </blui-info-list-item>
                 <blui-info-list-item [wrapSubtitle]="true" divider="full" [hidePadding]="true">
                     <div blui-title>Largest Tx Sent</div>
-                    <div blui-subtitle>{{ formatBan(insights.maxAmountSentBan) }} BAN</div>
+                    <div blui-subtitle>{{ formatBan(insights.maxAmountSentBan) }} KSHS</div>
                     <div blui-right-content class=" link mat-overline" (click)="search(insights.maxAmountSentHash)">
                         hash
                     </div>
@@ -95,11 +95,11 @@ import * as Highcharts from 'highcharts';
                     <div blui-title>Most Common Recipient</div>
                     <div blui-subtitle>
                         <div *ngIf="insights.mostCommonRecipientAddress">
-                            Sent BAN
+                            Sent KSHS
                             <strong style="margin: 0 4px"> {{ insights.mostCommonRecipientTxCount }} </strong> times to
                             recipient.
                         </div>
-                        <div *ngIf="!insights.mostCommonRecipientAddress">This account has never sent any BAN.</div>
+                        <div *ngIf="!insights.mostCommonRecipientAddress">This account has never sent any KSHS.</div>
                     </div>
                     <div blui-info *ngIf="vp.sm" class="link" (click)="search(insights.mostCommonRecipientAddress)">
                         {{ shortenAddr(insights.mostCommonRecipientAddress) }}
@@ -121,12 +121,12 @@ import * as Highcharts from 'highcharts';
             <mat-divider></mat-divider>
             <mat-list [style.paddingTop.px]="0">
                 <blui-info-list-item [wrapSubtitle]="true" divider="full" [hidePadding]="true">
-                    <div blui-title>Total BAN Received</div>
-                    <div blui-subtitle>{{ formatBan(insights.totalAmountReceivedBan) }} BAN</div>
+                    <div blui-title>Total KSHS Received</div>
+                    <div blui-subtitle>{{ formatBan(insights.totalAmountReceivedBan) }} KSHS</div>
                 </blui-info-list-item>
                 <blui-info-list-item [wrapSubtitle]="true" divider="full" [hidePadding]="true">
                     <div blui-title>Largest Tx Received</div>
-                    <div blui-subtitle>{{ formatBan(insights.maxAmountReceivedBan) }} BAN</div>
+                    <div blui-subtitle>{{ formatBan(insights.maxAmountReceivedBan) }} KSHS</div>
                     <div blui-right-content class=" link mat-overline" (click)="search(insights.maxAmountReceivedHash)">
                         hash
                     </div>
@@ -151,7 +151,7 @@ import * as Highcharts from 'highcharts';
                 <blui-info-list-item [wrapSubtitle]="true" divider="full" [hidePadding]="true">
                     <div blui-title>Most Common Sender</div>
                     <div blui-subtitle>
-                        Received BAN
+                        Received KSHS
                         <strong style="margin: 0 4px">{{ insights.mostCommonSenderTxCount }}</strong> times from sender.
                     </div>
                     <div blui-info *ngIf="vp.sm" class="link" (click)="search(insights.mostCommonSenderAddress)">
@@ -168,7 +168,7 @@ import * as Highcharts from 'highcharts';
                 </blui-info-list-item>
                 <blui-info-list-item [wrapSubtitle]="true" divider="full" [hidePadding]="true">
                     <div blui-title>Account Max Balance</div>
-                    <div blui-subtitle>{{ formatBan(insights.maxBalanceBan) }} BAN</div>
+                    <div blui-subtitle>{{ formatBan(insights.maxBalanceBan) }} KSHS</div>
                     <div blui-right-content class="link mat-overline" (click)="search(insights.maxBalanceHash)">
                         hash
                     </div>
@@ -284,9 +284,9 @@ export class InsightsTabComponent implements OnChanges {
             },
             series: [
                 {
-                    name: 'Balance (BAN)',
+                    name: 'Balance (KSHS)',
                     type: 'spline',
-                    color: '#FBDD11',
+                    color: '#16A34A',
                     data: chartData,
                     pointPlacement: 'on',
                     dataLabels: {

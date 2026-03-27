@@ -107,7 +107,7 @@
                         <div class="account-balance" [style.marginTop.px]="vp.sm ? 16 : 16" responsive>
                             <ng-container *ngIf="!vp.sm">
                                 <span class="account-ban-amount" [style.marginRight.px]="8"
-                                    >{{ confirmedBalance }} BAN</span
+                                    >{{ confirmedBalance }} KSHS</span
                                 >
                                 ·
                                 <span class="account-btc-amount" style="margin: 0 8px">
@@ -119,7 +119,7 @@
                                 </span>
                             </ng-container>
                             <ng-container *ngIf="vp.sm">
-                                <div class="account-ban-amount">{{ confirmedBalance }} BAN</div>
+                                <div class="account-ban-amount">{{ confirmedBalance }} KSHS</div>
                                 <div>
                                     <span class="account-btc-amount" [style.marginRight.px]="4">{{
                                         formatBtcPrice(accountOverview.balanceRaw)

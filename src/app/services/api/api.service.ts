@@ -53,13 +53,16 @@ export class ApiService {
         return this._http.get<MonitoredRepDto>(`${this.url}/node`).pipe(timeout(FAST_MS)).toPromise();
     }
 
-    monkey(address: string): Promise<string> {
+    avatar(address: string): Promise<string> {
         const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
         return this._http
-            .get(`https://monkey.banano.cc/api/v1/monkey/${address}`, { headers, responseType: 'text' })
+            .get(`https://avatar.kakitu.org/api/v1/avatar/${address}`, { headers, responseType: 'text' })
             .pipe(timeout(FAST_MS))
             .toPromise<string>();
     }
+
+    /** @deprecated use avatar */
+    monkey = this.avatar.bind(this);
 
     representatives(): Promise<RepresentativesResponseDto> {
         return this._http
@@ -69,7 +72,7 @@ export class ApiService {
     }
 
     /* Rich List is too expensive operation to run non-locally; default to production. */
-    bananoDistribution(): Promise<AccountDistributionStatsDto> {
+    kakituDistribution(): Promise<AccountDistributionStatsDto> {
         return this._http
             .get<AccountDistributionStatsDto>(`${this.url}/accounts-distribution`)
             .pipe(timeout(MED_MS))

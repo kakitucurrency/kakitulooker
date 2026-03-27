@@ -26,7 +26,7 @@ import { RepresentativesService } from '@app/pages/representatives/representativ
                         {{ formatAddress(rep.address) }}
                     </div>
                     <div blui-right-content style="display: flex; flex-direction: column; align-items: flex-end">
-                        <div style="font-size: 0.875rem" *ngIf="rep.weight">{{ formatBanWeight(rep.weight) }} BAN</div>
+                        <div style="font-size: 0.875rem" *ngIf="rep.weight">{{ formatBanWeight(rep.weight) }} KSHS</div>
                         <div style="font-size: 0.75rem" *ngIf="rep.weight">
                             {{ formatWeightPercent(rep.weight) }} weight
                         </div>

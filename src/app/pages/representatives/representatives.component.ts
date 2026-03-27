@@ -44,7 +44,7 @@ export class RepresentativesComponent implements OnInit {
     onlineLargeRepsCount = 0;
     onlineMicroRepsCount = 0;
     shownLargeReps: RepresentativeDto[] = [];
-    monitoredRepsShownColumnsKey = 'YELLOW_SPYGLASS_MONITORED_REP_COLUMNS';
+    monitoredRepsShownColumnsKey = 'KAKITU_LOOKER_MONITORED_REP_COLUMNS';
 
     /* Defaults */
     shownColumns: MonitoredRepTableColumns = {

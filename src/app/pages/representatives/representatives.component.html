@@ -4,7 +4,7 @@
         <ng-container *ngIf="loading">Loading</ng-container>
     </div>
     <div class="app-page-subtitle">
-        Representatives process transactions on the BANANO network. See all representatives below.
+        Representatives process transactions on the KAKITU network. See all representatives below.
     </div>
 </ng-template>
 
@@ -81,7 +81,7 @@
                         [checked]="shownColumns.weightBan"
                         style="pointer-events: none"
                     ></mat-checkbox>
-                    <div blui-title>Weight (BAN)</div>
+                    <div blui-title>Weight (KSHS)</div>
                 </blui-info-list-item>
 
                 <blui-info-list-item [dense]="true" [hidePadding]="true" (click)="toggleColumn('weightPercent')">
@@ -192,7 +192,7 @@
         <span class="app-caption">({{ onlineLargeRepsCount }} of {{ allLargeReps.length }} online)</span>
     </div>
     <div class="app-section-subtitle">
-        List of representatives with at least 100,000 BANANO weight delegated towards them.
+        List of representatives with at least 100,000 KAKITU weight delegated towards them.
     </div>
     <mat-slide-toggle
         color="primary"
@@ -215,7 +215,7 @@
             <span class="app-caption">({{ onlineMicroRepsCount }})</span>
         </div>
         <div class="app-section-subtitle">
-            Online representatives with less than 100,000 BANANO weight delegated towards them.
+            Online representatives with less than 100,000 KAKITU weight delegated towards them.
         </div>
         <app-micro-rep-list [onlineWeight]="onlineWeight" [microReps]="microReps"></app-micro-rep-list>
     </ng-container>

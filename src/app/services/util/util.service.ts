@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { rawToBan } from 'banano-unit-converter';
+import { rawToBan } from 'banano-unit-converter'; // kakitu uses same raw converter
 import { Subtype } from '@dev-ptera/nano-node-rpc';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class UtilService {
         return parts.join('.');
     }
 
-    convertRawToBan(
+    convertRawToKshs(
         raw: string,
         params: {
             precision: number;
@@ -26,27 +26,30 @@ export class UtilService {
         if (!raw || raw === '0') {
             return '0';
         }
-        let ban = Number(rawToBan(raw))
+        let kshs = Number(rawToBan(raw))
             .toFixed(params.precision)
             .replace(/\.?0+$/, '');
         if (params.comma) {
-            ban = this.numberWithCommas(ban);
+            kshs = this.numberWithCommas(kshs);
         }
         if (params.state === 'receive') {
-            return `+${ban}`;
+            return `+${kshs}`;
         }
         if (params.state === 'send') {
-            return `-${ban}`;
+            return `-${kshs}`;
         }
-        return ban;
+        return kshs;
     }
 
+    /** @deprecated use convertRawToKshs */
+    convertRawToBan = this.convertRawToKshs.bind(this);
+
     formatHtmlAddress(addr: string): string {
-        const ban = addr.substring(0, 4);
-        const first7 = addr.substring(4, 12);
-        const middle = addr.substring(12, addr.length - 7);
+        const prefix = addr.substring(0, 5);
+        const first7 = addr.substring(5, 13);
+        const middle = addr.substring(13, addr.length - 7);
         const last6 = addr.substring(addr.length - 7, addr.length);
-        return `${ban}<strong>${first7}</strong>${middle}${last6}`;
+        return `${prefix}<strong>${first7}</strong>${middle}${last6}`;
     }
 
     shortenAddress(addr: string): string {

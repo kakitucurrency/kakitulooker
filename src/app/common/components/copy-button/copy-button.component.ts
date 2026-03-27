@@ -23,7 +23,7 @@ export class CopyButtonComponent {
         el.select();
         document.execCommand('copy');
         document.body.removeChild(el);
-        this._snackBar.open(el.value.startsWith('ban_') ? 'Copied Address' : 'Copied Hash', undefined, {
+        this._snackBar.open(el.value.startsWith('kshs_') ? 'Copied Address' : 'Copied Hash', undefined, {
             duration: 1000,
         });
     }

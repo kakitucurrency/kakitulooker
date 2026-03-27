@@ -26,16 +26,16 @@ export class PriceService {
             });
     }
 
-    priceInBitcoin(ban: number): number {
+    priceInBitcoin(kshs: number): number {
         if (this.priceData) {
-            return this.priceInUSD(ban) / this.priceData.bitcoinPriceUsd;
+            return this.priceInUSD(kshs) / this.priceData.bitcoinPriceUsd;
         }
         return 0;
     }
 
-    priceInUSD(ban: number): number {
+    priceInUSD(kshs: number): number {
         if (this.priceData) {
-            return this.priceData.bananoPriceUsd * ban;
+            return this.priceData.kakituPriceUsd * kshs;
         }
         return 0;
     }

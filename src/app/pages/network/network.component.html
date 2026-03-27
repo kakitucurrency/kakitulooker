@@ -5,7 +5,7 @@
             <ng-container *ngIf="loading">Loading</ng-container>
         </div>
         <div class="app-page-subtitle">
-            Banano network overview, including supply, quorum and voting weight statistics.
+            Kakitu network overview, including supply, quorum and voting weight statistics.
         </div>
     </div>
 </ng-template>
@@ -40,7 +40,7 @@
 
     <mat-card responsive>
         <div class="app-section-title">Supply</div>
-        <div class="app-section-subtitle">How much banano is circulating?</div>
+        <div class="app-section-subtitle">How much kakitu is circulating?</div>
         <div style="display: flex; justify-content: center">
             <highcharts-chart
                 [update]="true"
@@ -64,7 +64,7 @@
                 <td>100%</td>
             </tr>
             <tr>
-                <td>Team Banano Funds</td>
+                <td>Team Kakitu Funds</td>
                 <td>{{ supply.devFundAmount | appComma }}</td>
                 <td>{{ supply.devFundPercent | appPercent }}</td>
             </tr>
@@ -75,7 +75,7 @@
             </tr>
         </table>
         <div class="app-section-subtitle" style="margin-bottom: 0; margin-top: 24px">
-            <strong>{{ supply.burnedAmount | appComma }}</strong> banano has been burned.
+            <strong>{{ supply.burnedAmount | appComma }}</strong> kakitu has been burned.
         </div>
     </mat-card>
 
@@ -146,12 +146,12 @@
 
     <mat-card responsive>
         <div class="app-section-title">Quorum</div>
-        <div class="app-section-subtitle">How much banano is needed to achieve consensus?</div>
+        <div class="app-section-subtitle">How much kakitu is needed to achieve consensus?</div>
         <!-- Make this a list that has STAT as title, description as subtitle, icon and metric. -->
         <table class="network-quorum-table" responsive [style.marginTop.px]="0">
             <tr>
                 <td>Current online stake total</td>
-                <td>{{ quorum.onlineWeight | appComma }} BAN</td>
+                <td>{{ quorum.onlineWeight | appComma }} KSHS</td>
             </tr>
             <tr>
                 <td>Online weight quorum percent</td>
@@ -159,11 +159,11 @@
             </tr>
             <tr>
                 <td>Delta <span class="app-caption">(number which quorum is achieved)</span></td>
-                <td>{{ quorum.quorumDelta | appComma }} BAN</td>
+                <td>{{ quorum.quorumDelta | appComma }} KSHS</td>
             </tr>
             <tr>
                 <td>Minimum online weight</td>
-                <td>{{ quorum.onlineWeightMinimum | appComma }} BAN</td>
+                <td>{{ quorum.onlineWeightMinimum | appComma }} KSHS</td>
             </tr>
         </table>
     </mat-card>

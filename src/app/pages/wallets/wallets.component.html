@@ -3,12 +3,12 @@
         <ng-container *ngIf="!loading"> Wallets </ng-container>
         <ng-container *ngIf="loading"> Loading </ng-container>
     </div>
-    <div class="app-page-subtitle">See account distribution statistics and the list of the top banano holders.</div>
+    <div class="app-page-subtitle">See account distribution statistics and the list of the top kakitu holders.</div>
 </ng-template>
 
 <ng-template #bodyContent>
-    <div class="app-section-title">BAN Distribution Chart</div>
-    <div class="app-section-subtitle">The chart below shows the distribution of banano among all opened accounts.</div>
+    <div class="app-section-title">KSHS Distribution Chart</div>
+    <div class="app-section-subtitle">The chart below shows the distribution of kakitu among all opened accounts.</div>
     <mat-card class="wallets-chart mat-elevation-z2" responsive>
         <highcharts-chart
             [update]="true"
@@ -20,7 +20,7 @@
     </mat-card>
 
     <div class="app-section-title">All Accounts</div>
-    <div class="app-section-subtitle" [style.marginBottom.px]="4">All banano accounts, sorted by balance.</div>
+    <div class="app-section-subtitle" [style.marginBottom.px]="4">All kakitu accounts, sorted by balance.</div>
     <div class="app-caption" [style.marginBottom.px]="24">
         Any account with an offline representative is marked with a warning flag. It is encouraged that these accounts
         change their representative if their current rep is constantly offline.
@@ -114,13 +114,13 @@
                 </a>
             </td>
         </ng-container>
-        <ng-container matColumnDef="ban">
+        <ng-container matColumnDef="kshs">
             <th mat-header-cell [style.paddingLeft.px]="16" *matHeaderCellDef>Amount</th>
             <td mat-cell style="padding: 8px 16px 8px 16px" *matCellDef="let element">
                 <div style="display: flex; align-items: center">
                     <!--<span [style.fontSize.px]="vp.sm ? 8 : 12">🍌</span>-->
                     <img
-                        src="assets/banano-mark.svg"
+                        src="assets/kakitu-mark.svg"
                         [width]="vp.sm ? 16 : 18"
                         [height]="vp.sm ? 16 : 18"
                         style="margin-right: 8px"

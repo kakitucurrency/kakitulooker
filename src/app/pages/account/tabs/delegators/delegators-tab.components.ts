@@ -18,7 +18,7 @@ import { MegaphoneService } from '@app/services/megaphone/megaphone.service';
     template: `
         <div class="account-delegator-weight" *ngIf="weightSum !== 0">
             <span class="account-delegator-weight-sum" responsive>{{ formattedWeight }}</span>
-            <span class="account-delegator-weight-sum-description" responsive>BAN Delegated Weight</span>
+            <span class="account-delegator-weight-sum-description" responsive>KSHS Delegated Weight</span>
             <ng-container *ngIf="isMegaphone">
                 <blui-spacer></blui-spacer>
                 <button
@@ -82,7 +82,7 @@ import { MegaphoneService } from '@app/services/megaphone/megaphone.service';
                 </td>
             </ng-container>
             <ng-container matColumnDef="weight">
-                <th mat-header-cell [style.paddingLeft.px]="16" *matHeaderCellDef>Weight (BAN)</th>
+                <th mat-header-cell [style.paddingLeft.px]="16" *matHeaderCellDef>Weight (KSHS)</th>
                 <td mat-cell [style.paddingLeft.px]="16" *matCellDef="let element">{{ element.weight }}</td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="columns"></tr>
@@ -94,7 +94,7 @@ import { MegaphoneService } from '@app/services/megaphone/megaphone.service';
             [style.fontSize.px]="vp.sm ? 10 : 14"
             style="margin: 16px 0;"
         >
-            *Accounts with a 0 BANANO balance have been removed from the total delegators count.
+            *Accounts with a 0 KAKITU balance have been removed from the total delegators count.
         </div>
         <div style="text-align: center; margin: 16px 0" *ngIf="delegators.length > shownDelegators">
             <button color="primary" style="padding: 8px 16px" mat-stroked-button (click)="increaseShownDelegators()">

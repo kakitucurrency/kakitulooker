@@ -21,7 +21,7 @@ export class RepresentativesService {
 
     formatVersion(version: string): string {
         if (version) {
-            return version.toUpperCase().replace('BANANO', '');
+            return version.toUpperCase().replace('KAKITU', '');
         }
         return '';
     }

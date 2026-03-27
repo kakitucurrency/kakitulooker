@@ -38,7 +38,7 @@ import { AliasService } from '@app/services/alias/alias.service';
                         style="display: flex; flex-direction: column; align-items: flex-end"
                         [style.marginRight.px]="vp.sm ? 0 : 16"
                     >
-                        <div style="font-size: 0.875rem">{{ formatBanWeight(rep.weight) }} BAN</div>
+                        <div style="font-size: 0.875rem">{{ formatBanWeight(rep.weight) }} KSHS</div>
                         <div style="font-size: 0.75rem">{{ formatWeightPercent(rep.weight) }} weight</div>
                     </div>
                 </blui-info-list-item>

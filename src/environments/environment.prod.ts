@@ -1,5 +1,5 @@
 export const environment = {
     megaphone: false,
     production: true,
-    api: 'https://api.yellowspyglass.com/yellowspyglass',
+    api: 'https://api.kakitu.org/kakitulooker',
 };

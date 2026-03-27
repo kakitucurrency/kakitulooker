@@ -46,7 +46,7 @@ import { ApiService } from '@app/services/api/api.service';
                         >{{ block.amount }} RAW | {{ convertRawToBan(block.amount) }}</span
                     >
                 </div>
-                <div class="hash-description">Amount of BANANO sent in this transaction</div>
+                <div class="hash-description">Amount of KAKITU sent in this transaction</div>
             </div>
 
             <div class="hash-section" *ngIf="block.subtype !== 'change'">
@@ -217,7 +217,7 @@ export class HashComponent implements OnDestroy {
         return `${this._util.convertRawToBan(raw, {
             precision: 10,
             comma: true,
-        })} BAN`;
+        })} KSHS`;
     }
 
     convertUnixToDate(time: number): string {

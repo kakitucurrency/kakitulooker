@@ -25,7 +25,7 @@ export class WalletsComponent implements OnInit {
     distributionChart: Options;
     accountBalances: AccountBalanceDto[] = [];
     isMegaphone = environment.megaphone;
-    columns = this.isMegaphone ? ['position', 'megaphone', 'addr', 'ban'] : ['position', 'addr', 'ban'];
+    columns = this.isMegaphone ? ['position', 'megaphone', 'addr', 'kshs'] : ['position', 'addr', 'kshs'];
     currentPage = 0;
     totalAccounts: number;
     loadingNewAccountBalancePage = false;
@@ -51,7 +51,7 @@ export class WalletsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        Promise.all([this._api.bananoDistribution(), this._api.getAccountBalances(0, this.pageSize)])
+        Promise.all([this._api.kakituDistribution(), this._api.getAccountBalances(0, this.pageSize)])
             .then((data) => {
                 this.distributionChart = this._createDistributionChart(data[0]);
                 this.accountBalances = data[1];
@@ -99,8 +99,8 @@ export class WalletsComponent implements OnInit {
     showWarningBadge(rep: string): boolean {
         if (this.isMegaphone) {
             const largeReps = new Set<string>();
-            largeReps.add('ban_1bananobh5rat99qfgt1ptpieie5swmoth87thi74qgbfrij7dcgjiij94xr');
-            largeReps.add('ban_1ka1ium4pfue3uxtntqsrib8mumxgazsjf58gidh1xeo5te3whsq8z476goo');
+            largeReps.add('kshs_1kakitubh5rat99qfgt1ptpieie5swmoth87thi74qgbfrij7dcgjiij94xr');
+            largeReps.add('kshs_1ka1ium4pfue3uxtntqsrib8mumxgazsjf58gidh1xeo5te3whsq8z476goo');
             return largeReps.has(rep);
         }
         return this._onlineRepsService.onlineReps.size > 0 && !this._onlineRepsService.onlineReps.has(rep);
@@ -178,7 +178,7 @@ export class WalletsComponent implements OnInit {
                 {
                     name: 'Opened Accounts',
                     type: 'bar',
-                    color: '#FBDD11',
+                    color: '#16A34A',
                     data: [
                         data.number0_001,
                         data.number0_01,

@@ -48,7 +48,7 @@ const bookmarksNavItem: NavItem = {
 };
 
 const vanityNavItem: NavItem = {
-    title: 'Vanity MonKeys',
+    title: 'Vanity Avatars',
     route: 'vanity',
     icon: undefined,
 };

@@ -88,7 +88,7 @@ export class WeightChartComponent implements OnChanges {
 
     Highcharts: typeof Highcharts = Highcharts;
     pieChartColors = [
-        '#FBDD11',
+        '#16A34A',
         '#1fb32e',
         '#eead4a',
         '#6eee99',

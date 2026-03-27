@@ -5,7 +5,7 @@
 export const environment = {
     megaphone: true,
     production: false,
-    api: 'http://192.168.1.235:3000/yellowspyglass',
+    api: 'http://192.168.1.235:3000/kakitulooker',
 };
 
 /*

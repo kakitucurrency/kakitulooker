@@ -89,14 +89,14 @@ export class AccountComponent implements OnDestroy {
         this.monkeySvg = undefined;
         this.accountOverview = undefined;
         window.scrollTo(0, 0);
-        if (searchValue.toLowerCase().startsWith('ban_')) {
+        if (searchValue.toLowerCase().startsWith('kshs_')) {
             this._searchAccount(searchValue.toLowerCase());
         } else {
             void this._router.navigate([`${APP_NAV_ITEMS.hash.route}/${searchValue}`]);
         }
     }
 
-    /** Given a ban address, searches for account. */
+    /** Given a kshs address, searches for account. */
     private _searchAccount(address): void {
         this.address = address;
         this.monkeySvg = '';
@@ -120,8 +120,8 @@ export class AccountComponent implements OnDestroy {
                 this.error = true;
             });
 
-        // Monkey
-        Promise.all([this._apiService.monkey(address), spin])
+        // Avatar
+        Promise.all([this._apiService.avatar(address), spin])
             .then(([data]) => {
                 this.monkeySvg = data;
             })
@@ -166,7 +166,7 @@ export class AccountComponent implements OnDestroy {
     }
 
     /**
-     * Sorts delegators based on weight descending and formats RAW balance into BAN balance.
+     * Sorts delegators based on weight descending and formats RAW balance into KSHS balance.
      */
     private _prepareDelegators(accountOverview: AccountOverviewDto): void {
         this.delegators = [];
@@ -196,7 +196,7 @@ export class AccountComponent implements OnDestroy {
         }
         this.confirmedTransactions.all.set(0, converted);
         this.confirmedTransactions.display = converted;
-        this._fetchMonkeys(this.confirmedTransactions.display);
+        this._fetchAvatars(this.confirmedTransactions.display);
     }
 
     private _preparePending(accountOverview: AccountOverviewDto): void {
@@ -208,24 +208,24 @@ export class AccountComponent implements OnDestroy {
             converted.push(this._convertPendingTxDtoToModal(pendingTx));
         }
         this.pendingTransactions.display = converted;
-        this._fetchMonkeys(this.pendingTransactions.display);
+        this._fetchAvatars(this.pendingTransactions.display);
     }
 
-    private _fetchMonkeys(transactions: ConfirmedTransaction[] | PendingTransaction[]): void {
+    private _fetchAvatars(transactions: ConfirmedTransaction[] | PendingTransaction[]): void {
         const addrSet = new Set<string>();
         for (const tx of transactions) {
             addrSet.add(tx.address);
         }
-        const monkeyPromise: Array<Promise<void>> = [];
+        const avatarPromise: Array<Promise<void>> = [];
         for (const addr of addrSet.values()) {
             if (this._monkeyCache.getMonkey(addr)) {
                 continue;
             }
-            monkeyPromise.push(
+            avatarPromise.push(
                 this._apiService
-                    .monkey(addr)
-                    .then((monkey: string) => {
-                        this._monkeyCache.addCache(addr, monkey);
+                    .avatar(addr)
+                    .then((avatar: string) => {
+                        this._monkeyCache.addCache(addr, avatar);
                         return Promise.resolve();
                     })
                     .catch((err) => {
@@ -234,7 +234,7 @@ export class AccountComponent implements OnDestroy {
                     })
             );
         }
-        void Promise.all(monkeyPromise).then(() => {
+        void Promise.all(avatarPromise).then(() => {
             this._ref.detectChanges();
         });
     }
@@ -244,7 +244,7 @@ export class AccountComponent implements OnDestroy {
      */
     private _convertConfirmedTxDtoToModal(tx: ConfirmedTransactionDto): ConfirmedTransaction {
         return {
-            balance: `${this._util.convertRawToBan(tx.balanceRaw, { precision: 5, comma: true, state: tx.type })} BAN`,
+            balance: `${this._util.convertRawToBan(tx.balanceRaw, { precision: 5, comma: true, state: tx.type })} KSHS`,
             hash: tx.hash,
             type: tx.type,
             height: tx.height,
@@ -264,7 +264,7 @@ export class AccountComponent implements OnDestroy {
                 precision: 5,
                 comma: true,
                 state: 'receive',
-            })} BAN`,
+            })} KSHS`,
             hash: tx.hash,
             address: tx.address,
             date: this._formatDateString(tx.timestamp),
@@ -300,7 +300,7 @@ export class AccountComponent implements OnDestroy {
                 }
                 this.confirmedTransactions.all.set(currPage, converted);
                 this.confirmedTransactions.display = converted;
-                this._fetchMonkeys(this.confirmedTransactions.display);
+                this._fetchAvatars(this.confirmedTransactions.display);
                 this._ref.detectChanges();
             })
             .catch((err) => {
@@ -362,8 +362,8 @@ export class AccountComponent implements OnDestroy {
             const firstBits = address.substring(0, 12);
             const midBits = address.substring(12, 58);
             const lastBits = address.substring(58, 64);
-            // ban_3batmanuenphd7osrez9c45b3uqw9d9u813uqw9d9u81ne8xa6m43e1py56y9p48ap
-            // ban_3batmanuenphd7osrez9c45b3uqw9d9u81ne8xa6m43e1py56y9p48ap69zg
+            // kshs_3batmanuenphd7osrez9c45b3uqw9d9u813uqw9d9u81ne8xa6m43e1py56y9p48ap
+            // kshs_3batmanuenphd7osrez9c45b3uqw9d9u81ne8xa6m43e1py56y9p48ap69zg
             return `<strong class="">${firstBits}</strong><span class="secondary">${midBits}</span><strong class="">${lastBits}</strong>`;
         }
     }

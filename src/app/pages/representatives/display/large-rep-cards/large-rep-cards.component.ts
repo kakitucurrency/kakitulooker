@@ -63,7 +63,7 @@ import { AliasService } from '@app/services/alias/alias.service';
                 </div>
                 <div>
                     <div>
-                        {{ formatBanWeight(rep.weight) }} BAN <ng-container *ngIf="!rep.online">Weight</ng-container>
+                        {{ formatBanWeight(rep.weight) }} KSHS <ng-container *ngIf="!rep.online">Weight</ng-container>
                     </div>
                     <div *ngIf="rep.online">{{ formatWeightPercent(rep.weight) }} Weight</div>
                 </div>

@@ -38,13 +38,13 @@ export class NavigationComponent implements OnInit {
     ngOnInit(): void {
         this._searchService.searchEvents().subscribe((data: { search: string; openInNewWindow: boolean }) => {
             if (data.openInNewWindow) {
-                if (data.search.startsWith('ban_')) {
-                    window.open(`https://yellowspyglass.com/${APP_NAV_ITEMS.account.route}/${data.search}`, '_blank');
+                if (data.search.startsWith('kshs_')) {
+                    window.open(`https://kakitu.org/${APP_NAV_ITEMS.account.route}/${data.search}`, '_blank');
                 } else {
-                    window.open(`https://yellowspyglass.com/${APP_NAV_ITEMS.hash.route}/${data.search}`, '_blank');
+                    window.open(`https://kakitu.org/${APP_NAV_ITEMS.hash.route}/${data.search}`, '_blank');
                 }
             } else {
-                if (data.search.startsWith('ban_')) {
+                if (data.search.startsWith('kshs_')) {
                     void this._router.navigate([`${APP_NAV_ITEMS.account.route}/${data.search}`]);
                 } else {
                     void this._router.navigate([`${APP_NAV_ITEMS.hash.route}/${data.search}`]);
@@ -117,7 +117,7 @@ export class NavigationComponent implements OnInit {
                 }
 
                 switch (route.urlAfterRedirects
-                        .replace('explorer/', '')  // Prune creeper legacy routes
+                        .replace('explorer/', '')  // Prune explorer legacy routes
                     .replace('/history', '')
                     .split('/')[1]) {
                     case `${APP_NAV_ITEMS.home.route}`: {
@@ -127,7 +127,7 @@ export class NavigationComponent implements OnInit {
                         this._meta.updateTag({
                             name: 'description',
                             content:
-                                'Search banano addresses or transaction hashes; explore the open seas of the banano network',
+                                'Search kakitu addresses or transaction hashes; explore the kakitu network',
                         });
                         break;
                     }
@@ -149,7 +149,7 @@ export class NavigationComponent implements OnInit {
                         this._title.setTitle(this._makeTitle('Representatives'));
                         this._meta.updateTag({
                             name: 'description',
-                            content: 'Search banano representatives, online offline reps, voting weight distribution',
+                            content: 'Search kakitu representatives, online offline reps, voting weight distribution',
                         });
                         break;
                     }
@@ -159,7 +159,7 @@ export class NavigationComponent implements OnInit {
                         this._title.setTitle(this._makeTitle('Network'));
                         this._meta.updateTag({
                             name: 'description',
-                            content: 'Banano network status, confirmation quorum, online representatives',
+                            content: 'Kakitu network status, confirmation quorum, online representatives',
                         });
                         break;
                     }
@@ -187,7 +187,7 @@ export class NavigationComponent implements OnInit {
                         this._title.setTitle(this._makeTitle('Wallets'));
                         this._meta.updateTag({
                             name: 'description',
-                            content: 'See banano distribution by account, top banano holders, rich list',
+                            content: 'See kakitu distribution by account, top kakitu holders, rich list',
                         });
                         break;
                     }
@@ -198,17 +198,17 @@ export class NavigationComponent implements OnInit {
                         this._meta.updateTag({
                             name: 'description',
                             content:
-                                'Known banano accounts, banano exchanges, banano games, banano developer / owner accounts',
+                                'Known kakitu accounts, kakitu exchanges, kakitu games, kakitu developer / owner accounts',
                         });
                         break;
                     }
                     case `${APP_NAV_ITEMS.vanity.route}`: {
                         this.toolbarTitle = APP_NAV_ITEMS.vanity.title;
                         this._stateService.setSelectedItem(APP_NAV_ITEMS.vanity.title);
-                        this._title.setTitle(this._makeTitle('Vanity MonKeys'));
+                        this._title.setTitle(this._makeTitle('Vanity Avatars'));
                         this._meta.updateTag({
                             name: 'description',
-                            content: 'Banano addresses with custom vanity monKeys.',
+                            content: 'Kakitu addresses with custom vanity avatars.',
                         });
                         break;
                     }
@@ -244,11 +244,11 @@ export class NavigationComponent implements OnInit {
         this._title.setTitle(this._makeTitle('Node'));
         this._meta.updateTag({
             name: 'description',
-            content: 'Node status for the Yellow Spyglass explorer; batman representative',
+            content: 'Node status for the Kakitu Looker explorer',
         });
     }
 
     private _makeTitle(page: string): string {
-        return `Yellow Spyglass | ${page}`;
+        return `Kakitu Looker | ${page}`;
     }
 }
