@@ -1,34 +1,11 @@
 <div class="app-page-root home-root">
 
-    <!-- Live Ticker Bar -->
-    <div class="live-ticker">
-        <div class="ticker-track">
-            <span class="tick-item"><span class="tick-dot"></span> KSHS LIVE</span>
-            <span class="tick-item">BLOCK CONFIRMATION ~2 SECONDS</span>
-            <span class="tick-item">TRANSACTION FEES 0 KSHS</span>
-            <span class="tick-item">OPEN SOURCE · FULLY DECENTRALIZED</span>
-            <span class="tick-item">P2P · PEERING.KAKITU.ORG:56111</span>
-            <span class="tick-item">BUILT ON NANO PROTOCOL</span>
-            <span class="tick-item">14 ECOSYSTEM TOOLS</span>
-            <span class="tick-sep">///</span>
-            <span class="tick-item"><span class="tick-dot"></span> KSHS LIVE</span>
-            <span class="tick-item">BLOCK CONFIRMATION ~2 SECONDS</span>
-            <span class="tick-item">TRANSACTION FEES 0 KSHS</span>
-            <span class="tick-item">OPEN SOURCE · FULLY DECENTRALIZED</span>
-            <span class="tick-item">P2P · PEERING.KAKITU.ORG:56111</span>
-            <span class="tick-item">BUILT ON NANO PROTOCOL</span>
-            <span class="tick-item">14 ECOSYSTEM TOOLS</span>
-            <span class="tick-sep">///</span>
-        </div>
-    </div>
-
     <!-- ── HERO ── -->
     <section class="hero" [class.sm]="vp.sm" [class.md]="vp.md">
-        <div class="hero-glow-container"><div class="hero-glow"></div></div>
-        <div class="hero-grid-bg"></div>
+        <div class="hero-glow"></div>
 
         <div class="hero-tag">
-            <span class="tag-dot"></span>
+            <span class="tag-line"></span>
             // KSHS &middot; Kenya's Digital Shilling &middot; Live Network
         </div>
 
@@ -92,6 +69,18 @@
             </div>
         </div>
     </section>
+
+    <!-- ── WAVES ── -->
+    <div class="waves-section">
+        <app-wave
+            *ngIf="!vp.sm"
+            [darkThemeWaveNumber]="1"
+            [lightThemeWaveNumber]="1"
+            [bottom]="-80"
+            maxHeight="700"
+        ></app-wave>
+        <img *ngIf="vp.sm" class="wave-mobile" src="assets/waves/wave1.svg" />
+    </div>
 
     <!-- ── MANIFESTO STRIP ── -->
     <div class="manifesto-strip">
