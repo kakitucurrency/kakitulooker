@@ -2,85 +2,47 @@
 
     <!-- ── HERO ── -->
     <section class="hero" [class.sm]="vp.sm" [class.md]="vp.md">
-        <div class="hero-glow"></div>
 
-        <div class="hero-tag">
-            <span class="tag-line"></span>
-            // KSHS &middot; Kenya's Digital Shilling &middot; Live Network
-        </div>
+        <!-- centered content -->
+        <div class="home-body">
+            <div class="home-title" [class.sm]="vp.sm" [class.md]="vp.md">Kakitu Looker</div>
 
-        <h1>
-            <span class="solid">KAKI</span><span class="outline">TU</span><br />
-            <span class="outline">NET</span><span class="solid">WORK</span>
-        </h1>
+            <p class="home-subtitle">Explore Kenya's digital shilling network</p>
 
-        <p class="hero-desc">
-            A feeless, instant, open-source payment network built for Kenya.<br />
-            No banks. No middlemen. No waiting. Kenya has been overcharged for long enough.
-        </p>
-
-        <div class="hero-search" [class.sm]="vp.sm">
-            <mat-form-field appearance="outline">
-                <mat-label>Search address, block or hash</mat-label>
-                <input
-                    matInput
-                    autocomplete="off"
-                    (focus)="touchedIdField = true; idFieldActive = true"
-                    (blur)="idFieldActive = false"
-                    [formControl]="searchFormControl"
-                    (keyup.enter)="search(searchFormControl.value, $event)"
-                />
-            </mat-form-field>
-            <button
-                [class.sm]="vp.sm"
-                class="hero-search-button"
-                mat-flat-button
-                color="accent"
-                [disabled]="loading || !searchFormControl.value"
-                (click)="search(searchFormControl.value, $event)"
-            >
-                <div [class.home-loading]="loading">
-                    <mat-spinner *ngIf="loading" [diameter]="18" [style.marginRight.px]="16"></mat-spinner>
-                    Search
-                </div>
-            </button>
-        </div>
-
-        <div class="ticker">
-            <div class="tick">
-                <div class="tick-val">~2s</div>
-                <div class="tick-lbl">Confirmation</div>
-            </div>
-            <div class="tick">
-                <div class="tick-val">0</div>
-                <div class="tick-lbl">Fee (KSHS)</div>
-            </div>
-            <div class="tick">
-                <div class="tick-val">Live</div>
-                <div class="tick-lbl">Network</div>
-            </div>
-            <div class="tick">
-                <div class="tick-val">14</div>
-                <div class="tick-lbl">Tools</div>
-            </div>
-            <div class="tick">
-                <div class="tick-val">∞</div>
-                <div class="tick-lbl">Scalable</div>
+            <div class="hero-search" [class.sm]="vp.sm">
+                <mat-form-field appearance="outline">
+                    <mat-label>Address or Hash</mat-label>
+                    <input
+                        matInput
+                        autocomplete="off"
+                        (focus)="touchedIdField = true; idFieldActive = true"
+                        (blur)="idFieldActive = false"
+                        [formControl]="searchFormControl"
+                        (keyup.enter)="search(searchFormControl.value, $event)"
+                    />
+                </mat-form-field>
+                <button
+                    [class.sm]="vp.sm"
+                    class="hero-search-button"
+                    mat-flat-button
+                    color="accent"
+                    [disabled]="loading || !searchFormControl.value"
+                    (click)="search(searchFormControl.value, $event)"
+                >
+                    <div [class.home-loading]="loading">
+                        <mat-spinner *ngIf="loading" [diameter]="18" [style.marginRight.px]="16"></mat-spinner>
+                        Search
+                    </div>
+                </button>
             </div>
         </div>
+
+        <!-- wave pinned to bottom of hero, inside the section so it stays visible -->
+        <div class="hero-wave-wrap">
+            <img src="assets/waves/wave1.svg" class="hero-wave" />
+        </div>
+
     </section>
-
-    <!-- ── WAVES ── -->
-    <div class="waves-section">
-        <app-wave
-            *ngIf="!vp.sm"
-            [darkThemeWaveNumber]="1"
-            [lightThemeWaveNumber]="1"
-            [bottom]="-80"
-            maxHeight="700"
-        ></app-wave>
-        <img *ngIf="vp.sm" class="wave-mobile" src="assets/waves/wave1.svg" />
-    </div>
 
     <!-- ── MANIFESTO STRIP ── -->
     <div class="manifesto-strip">

@@ -31,95 +31,79 @@ $display: 'Montserrat', sans-serif;
     box-sizing: border-box;
 }
 
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.2; }
-}
-
 // ── HERO ──────────────────────────────────────────────────────────────────
 .hero {
-    min-height: calc(100vh - 64px);
+    height: calc(100vh - 64px);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 100px 80px 80px;
     position: relative;
     overflow: hidden;
 
-    &.sm {
-        padding: 80px 24px 60px;
-        min-height: calc(100vh - 56px);
-    }
-    &.md {
-        padding: 100px 48px 80px;
-    }
+    &.sm { height: calc(100vh - 56px); }
 }
 
-.hero-glow {
-    position: absolute;
-    top: 0; right: -200px;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle at 60% 40%, rgba(0, 255, 106, 0.07) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-.hero-tag {
-    font-family: $mono;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: $green;
-    margin-bottom: 28px;
+// Centered content block
+.home-body {
+    flex: 1;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 12px;
+    padding-bottom: 180px; // leave room for wave at bottom
     position: relative;
-    z-index: 1;
-    animation: fade-up 0.8s ease both;
+    z-index: 2;
 
-    .tag-line {
-        width: 40px;
-        height: 1px;
-        background: $green;
-        flex-shrink: 0;
-    }
+    &.sm { padding-bottom: 80px; }
 }
 
-h1 {
-    font-family: $display;
-    font-size: clamp(64px, 8vw, 110px);
-    font-weight: 900;
-    line-height: 0.95;
-    letter-spacing: -4px;
-    margin-bottom: 32px;
-    position: relative;
-    z-index: 1;
-    animation: fade-up 0.8s 0.1s ease both;
+.home-title {
+    font-family: pirateFont;
+    font-size: 140px;
+    font-weight: 300;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1;
+    margin-bottom: 4px;
+    text-shadow: 0 0 60px rgba(0, 255, 106, 0.25);
+    animation: fade-up 0.9s ease both;
 
-    .outline {
-        -webkit-text-stroke: 1px rgba(0, 255, 106, 0.6);
-        color: transparent;
-    }
-    .solid { color: #ffffff; }
+    &.md { font-size: 100px; }
+    &.sm { font-size: 64px; }
 }
 
-// ── WAVES ─────────────────────────────────────────────────────────────────
-.waves-section {
+.home-subtitle {
+    font-family: $mono;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.35);
+    text-align: center;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    animation: fade-up 0.9s 0.15s ease both;
+}
+
+// Wave pinned to bottom of hero (not fixed — lives inside section)
+.hero-wave-wrap {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
     pointer-events: none;
+    z-index: 1;
+    min-width: 1200px;
 
-    .wave-mobile {
+    .hero-wave {
         display: block;
         width: 100%;
-        margin-top: -160px;
-        filter: brightness(0.08) hue-rotate(0deg) saturate(0);
+        // Tint the yellow/blue wave green for dark theme
+        filter: brightness(0.22) sepia(1) hue-rotate(80deg) saturate(8);
+        opacity: 0.85;
     }
+}
 
-    ::ng-deep svg path,
-    ::ng-deep img {
-        fill: #0d0d0d !important;
-    }
+@keyframes fade-up {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .hero-desc {
@@ -138,12 +122,12 @@ h1 {
 
 .hero-search {
     display: flex;
-    max-width: 600px;
+    max-width: 560px;
     width: 100%;
-    margin-bottom: 48px;
+    margin-bottom: 0;
     position: relative;
-    z-index: 1;
-    animation: fade-up 0.8s 0.3s ease both;
+    z-index: 2;
+    animation: fade-up 0.9s 0.3s ease both;
 
     &.sm {
         flex-direction: column;
