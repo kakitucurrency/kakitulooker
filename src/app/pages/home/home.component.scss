@@ -14,7 +14,21 @@ $display: 'Montserrat', sans-serif;
 .app-page-root.home-root {
     padding: 0;
     min-height: 100vh;
+    height: auto;
     background: $bg;
+    align-items: stretch; // override global align-items:center so sections span full width
+}
+
+// Ensure all direct section children span the full width
+.hero,
+.manifesto-strip,
+.why-section,
+.eco-section,
+.how-section,
+.getstarted-section,
+.site-footer {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 // ── LIVE TICKER ───────────────────────────────────────────────────────────
