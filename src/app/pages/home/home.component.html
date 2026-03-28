@@ -1,11 +1,35 @@
 <div class="app-page-root home-root">
-    <!-- Hero Section -->
-    <div class="hero" responsive>
-        <div class="hero-glow"></div>
+
+    <!-- Live Ticker Bar -->
+    <div class="live-ticker">
+        <div class="ticker-track">
+            <span class="tick-item"><span class="tick-dot"></span> KSHS LIVE</span>
+            <span class="tick-item">BLOCK CONFIRMATION ~2 SECONDS</span>
+            <span class="tick-item">TRANSACTION FEES 0 KSHS</span>
+            <span class="tick-item">OPEN SOURCE · FULLY DECENTRALIZED</span>
+            <span class="tick-item">P2P · PEERING.KAKITU.ORG:56111</span>
+            <span class="tick-item">BUILT ON NANO PROTOCOL</span>
+            <span class="tick-item">14 ECOSYSTEM TOOLS</span>
+            <span class="tick-sep">///</span>
+            <span class="tick-item"><span class="tick-dot"></span> KSHS LIVE</span>
+            <span class="tick-item">BLOCK CONFIRMATION ~2 SECONDS</span>
+            <span class="tick-item">TRANSACTION FEES 0 KSHS</span>
+            <span class="tick-item">OPEN SOURCE · FULLY DECENTRALIZED</span>
+            <span class="tick-item">P2P · PEERING.KAKITU.ORG:56111</span>
+            <span class="tick-item">BUILT ON NANO PROTOCOL</span>
+            <span class="tick-item">14 ECOSYSTEM TOOLS</span>
+            <span class="tick-sep">///</span>
+        </div>
+    </div>
+
+    <!-- ── HERO ── -->
+    <section class="hero" [class.sm]="vp.sm" [class.md]="vp.md">
+        <div class="hero-glow-container"><div class="hero-glow"></div></div>
+        <div class="hero-grid-bg"></div>
 
         <div class="hero-tag">
-            <span class="tag-line"></span>
-            // KSHS &middot; Kenyan Digital Shilling &middot; Live
+            <span class="tag-dot"></span>
+            // KSHS &middot; Kenya's Digital Shilling &middot; Live Network
         </div>
 
         <h1>
@@ -14,13 +38,13 @@
         </h1>
 
         <p class="hero-desc">
-            A transparent, real-time window into the Kakitu network. Explore blocks,
-            accounts, and transactions on Kenya's digital shilling infrastructure.
+            A feeless, instant, open-source payment network built for Kenya.<br />
+            No banks. No middlemen. No waiting. Kenya has been overcharged for long enough.
         </p>
 
-        <div class="hero-search" responsive>
+        <div class="hero-search" [class.sm]="vp.sm">
             <mat-form-field appearance="outline">
-                <mat-label>Address or Hash</mat-label>
+                <mat-label>Search address, block or hash</mat-label>
                 <input
                     matInput
                     autocomplete="off"
@@ -31,7 +55,7 @@
                 />
             </mat-form-field>
             <button
-                responsive
+                [class.sm]="vp.sm"
                 class="hero-search-button"
                 mat-flat-button
                 color="accent"
@@ -52,27 +76,261 @@
             </div>
             <div class="tick">
                 <div class="tick-val">0</div>
-                <div class="tick-lbl">Fee</div>
+                <div class="tick-lbl">Fee (KSHS)</div>
             </div>
             <div class="tick">
                 <div class="tick-val">Live</div>
-                <div class="tick-lbl">Blocks</div>
+                <div class="tick-lbl">Network</div>
             </div>
             <div class="tick">
-                <div class="tick-val">KSHS</div>
-                <div class="tick-lbl">Reserve</div>
+                <div class="tick-val">14</div>
+                <div class="tick-lbl">Tools</div>
+            </div>
+            <div class="tick">
+                <div class="tick-val">∞</div>
+                <div class="tick-lbl">Scalable</div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 
-<div class="waves-section">
-    <app-wave
-        *ngIf="!vp.sm"
-        [darkThemeWaveNumber]="1"
-        [lightThemeWaveNumber]="1"
-        [bottom]="-100"
-        maxHeight="750"
-    ></app-wave>
-    <img *ngIf="vp.sm" style="margin-top: -200px" height="200" src="assets/waves/wave1.svg" />
+    <!-- ── MANIFESTO STRIP ── -->
+    <div class="manifesto-strip">
+        <div class="manifesto-text">KENYA HAS BEEN OVERCHARGED FOR LONG ENOUGH.</div>
+        <div class="manifesto-divider"></div>
+        <div class="manifesto-facts">
+            <span class="mf"><strong>0</strong> FEES</span>
+            <span class="mf"><strong>~2s</strong> SETTLEMENT</span>
+            <span class="mf"><strong>100%</strong> OPEN SOURCE</span>
+            <span class="mf"><strong>∞</strong> SCALABLE</span>
+        </div>
+    </div>
+
+    <!-- ── WHY KAKITU ── -->
+    <section class="why-section" [class.sm]="vp.sm">
+        <div class="section-label">// Why Kakitu</div>
+        <h2 class="section-title">THE MONEY<br /><span class="outline">KENYA</span><br />DESERVES</h2>
+        <p class="section-sub">Built on the battle-tested Nano protocol. Tuned for Kenya. No mining, no waste, no gatekeepers.</p>
+        <div class="why-grid" [class.sm]="vp.sm">
+            <div class="why-card">
+                <div class="why-number">0<span class="why-unit">KSHS</span></div>
+                <div class="why-title">ZERO FEES</div>
+                <div class="why-desc">Every transaction costs nothing. Not a fraction of a shilling. M-Pesa charges up to 1.4% per transaction. KSHS charges 0. Forever.</div>
+            </div>
+            <div class="why-card">
+                <div class="why-number">~2<span class="why-unit">SEC</span></div>
+                <div class="why-title">INSTANT SETTLEMENT</div>
+                <div class="why-desc">Transactions confirm in under 2 seconds on average. No waiting for bank windows. No batch processing. Money that moves at the speed of life.</div>
+            </div>
+            <div class="why-card">
+                <div class="why-number">∞<span class="why-unit">TPS</span></div>
+                <div class="why-title">OPEN & DECENTRALIZED</div>
+                <div class="why-desc">No single company controls the network. No mining required. No energy waste. Every Kenyan with a phone can participate equally.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── ECOSYSTEM ── -->
+    <section class="eco-section" [class.sm]="vp.sm" id="ecosystem">
+        <div class="section-label">// Ecosystem</div>
+        <h2 class="section-title">14 TOOLS.<br /><span class="outline">ONE</span> NETWORK.</h2>
+        <p class="section-sub">Everything you need to build on Kakitu. From node software to SDKs, wallets to game engine plugins — all open source, all free.</p>
+
+        <div class="eco-grid" [class.sm]="vp.sm">
+
+            <a href="https://github.com/kakitucurrency/yellow-spyglass-client" target="_blank" class="eco-card featured">
+                <div class="eco-top"><span class="eco-lang">Angular · TypeScript</span><span class="eco-gh">↗ GitHub</span></div>
+                <div class="eco-icon">🔍</div>
+                <div class="eco-name">KAKITU EXPLORER</div>
+                <div class="eco-desc">Real-time block explorer. Search addresses, transactions, blocks. The transparent window into the Kakitu network. Live at explorer.kakitu.org.</div>
+                <div class="eco-tags"><span class="eco-tag">Block Explorer</span><span class="eco-tag">Live</span></div>
+            </a>
+
+            <a href="https://github.com/kakitucurrency/kakitu-node" target="_blank" class="eco-card">
+                <div class="eco-top"><span class="eco-lang">C++</span><span class="eco-gh">↗ GitHub</span></div>
+                <div class="eco-icon">⚡</div>
+                <div class="eco-name">NODE</div>
+                <div class="eco-desc">The core Kakitu network node. Run a representative. Earn trust. Secure the network.</div>
+                <div class="eco-tags"><span class="eco-tag">Core</span></div>
+            </a>
+
+            <a href="https://github.com/kakitucurrency/keytools" target="_blank" class="eco-card">
+                <div class="eco-top"><span class="eco-lang">JavaScript</span><span class="eco-gh">↗ GitHub</span></div>
+                <div class="eco-icon">🔑</div>
+                <div class="eco-name">KEYTOOLS</div>
+                <div class="eco-desc">Web-based key generation, vanity address creation, block processing and QR codes.</div>
+                <div class="eco-tags"><span class="eco-tag">Keys</span><span class="eco-tag">Web</span></div>
+            </a>
+
+            <a href="https://github.com/kakitucurrency/gokakitu" target="_blank" class="eco-card">
+                <div class="eco-top"><span class="eco-lang">Go</span><span class="eco-gh">↗ GitHub</span></div>
+                <div class="eco-icon">🐹</div>
+                <div class="eco-name">GOKAKITU</div>
+                <div class="eco-desc">Full-featured Go library. RPC client, wallet, block creation. Production-ready.</div>
+                <div class="eco-tags"><span class="eco-tag">SDK</span><span class="eco-tag">Go</span></div>
+            </a>
+
+            <a href="https://github.com/kakitucurrency/kakitucurrency-js" target="_blank" class="eco-card">
+                <div class="eco-top"><span class="eco-lang">TypeScript</span><span class="eco-gh">↗ GitHub</span></div>
+                <div class="eco-icon">🟨</div>
+                <div class="eco-name">KAKITU-JS</div>
+                <div class="eco-desc">JavaScript/TypeScript library. Address derivation, block signing, unit conversion. Browser and Node.js.</div>
+                <div class="eco-tags"><span class="eco-tag">SDK</span><span class="eco-tag">Browser</span></div>
+            </a>
+
+            <a href="https://github.com/kakitucurrency/atto" target="_blank" class="eco-card">
+                <div class="eco-top"><span class="eco-lang">Go</span><span class="eco-gh">↗ GitHub</span></div>
+                <div class="eco-icon">💻</div>
+                <div class="eco-name">ATTO WALLET</div>
+                <div class="eco-desc">Minimalist CLI wallet. Send, receive, check balance from your terminal.</div>
+                <div class="eco-tags"><span class="eco-tag">Wallet</span><span class="eco-tag">CLI</span></div>
+            </a>
+
+            <a href="https://github.com/kakitucurrency/kakitudro" target="_blank" class="eco-card">
+                <div class="eco-top"><span class="eco-lang">C# · Avalonia</span><span class="eco-gh">↗ GitHub</span></div>
+                <div class="eco-icon">📱</div>
+                <div class="eco-name">KAKITUDRO</div>
+                <div class="eco-desc">Cross-platform mobile wallet. NFC payments, QR codes, hardware wallet support.</div>
+                <div class="eco-tags"><span class="eco-tag">Wallet</span><span class="eco-tag">Mobile</span><span class="eco-tag">NFC</span></div>
+            </a>
+
+            <a href="https://github.com/kakitucurrency/kakitu_mcp_server" target="_blank" class="eco-card">
+                <div class="eco-top"><span class="eco-lang">TypeScript</span><span class="eco-gh">↗ GitHub</span></div>
+                <div class="eco-icon">🤖</div>
+                <div class="eco-name">MCP SERVER</div>
+                <div class="eco-desc">Let AI assistants query the Kakitu network, send transactions, and manage wallets via MCP protocol.</div>
+                <div class="eco-tags"><span class="eco-tag">AI</span><span class="eco-tag">MCP</span></div>
+            </a>
+
+            <a href="https://github.com/kakitucurrency/kakitu-work-server" target="_blank" class="eco-card">
+                <div class="eco-top"><span class="eco-lang">Rust</span><span class="eco-gh">↗ GitHub</span></div>
+                <div class="eco-icon">⚙️</div>
+                <div class="eco-name">WORK SERVER</div>
+                <div class="eco-desc">GPU-accelerated proof-of-work generation. OpenCL support. High-throughput applications.</div>
+                <div class="eco-tags"><span class="eco-tag">PoW</span><span class="eco-tag">GPU</span></div>
+            </a>
+
+            <a href="https://github.com/kakitucurrency/kakitudrop" target="_blank" class="eco-card">
+                <div class="eco-top"><span class="eco-lang">Next.js</span><span class="eco-gh">↗ GitHub</span></div>
+                <div class="eco-icon">💧</div>
+                <div class="eco-name">KAKITUDROP</div>
+                <div class="eco-desc">Community faucet. Get your first KSHS. Perfect for developers testing integrations.</div>
+                <div class="eco-tags"><span class="eco-tag">Faucet</span></div>
+            </a>
+
+            <a href="https://github.com/kakitucurrency/UnityKakituPlugin" target="_blank" class="eco-card">
+                <div class="eco-top"><span class="eco-lang">C# · Unity</span><span class="eco-gh">↗ GitHub</span></div>
+                <div class="eco-icon">🎮</div>
+                <div class="eco-name">UNITY PLUGIN</div>
+                <div class="eco-desc">Native Unity integration. In-game purchases, player payments. Zero-fee gaming economy.</div>
+                <div class="eco-tags"><span class="eco-tag">Gaming</span></div>
+            </a>
+
+            <a href="https://github.com/kakitucurrency/kaki-godot-module" target="_blank" class="eco-card">
+                <div class="eco-top"><span class="eco-lang">C++ · GDNative</span><span class="eco-gh">↗ GitHub</span></div>
+                <div class="eco-icon">🤺</div>
+                <div class="eco-name">GODOT MODULE</div>
+                <div class="eco-desc">GDNative module for Godot Engine. First-class Kakitu payments in open-source game development.</div>
+                <div class="eco-tags"><span class="eco-tag">Gaming</span><span class="eco-tag">Godot</span></div>
+            </a>
+
+            <a href="https://github.com/kakitucurrency/kakitu-middleware" target="_blank" class="eco-card">
+                <div class="eco-top"><span class="eco-lang">Python</span><span class="eco-gh">↗ GitHub</span></div>
+                <div class="eco-icon">🔗</div>
+                <div class="eco-name">MIDDLEWARE</div>
+                <div class="eco-desc">BoomPow distributed work middleware. Connect your node to the community PoW network.</div>
+                <div class="eco-tags"><span class="eco-tag">Infrastructure</span></div>
+            </a>
+
+            <a href="https://github.com/kakitucurrency/yellow-spyglass-server" target="_blank" class="eco-card">
+                <div class="eco-top"><span class="eco-lang">Node.js</span><span class="eco-gh">↗ GitHub</span></div>
+                <div class="eco-icon">🖥️</div>
+                <div class="eco-name">LOOKER API</div>
+                <div class="eco-desc">REST API server powering the Kakitu explorer. Account data, block info, network stats. Live at api.kakitu.org.</div>
+                <div class="eco-tags"><span class="eco-tag">API</span><span class="eco-tag">Live</span></div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- ── HOW IT WORKS ── -->
+    <section class="how-section" [class.sm]="vp.sm">
+        <div class="section-label">// How It Works</div>
+        <h2 class="section-title">SEND KSHS IN<br /><span class="outline">THREE</span> STEPS</h2>
+        <p class="section-sub">No intermediaries. No waiting for bank hours. Just instant, feeless value transfer.</p>
+
+        <div class="how-steps" [class.sm]="vp.sm">
+            <div class="how-step">
+                <div class="step-num">01</div>
+                <div class="step-title">GET AN ADDRESS</div>
+                <div class="step-desc">Generate a kshs_ address locally — no sign-up, no KYC. Your keys, your money. Use KeyTools or any SDK.</div>
+                <div class="step-code">kshs_1mqj8myiphp7uzz...<br>// 64-char seed → account</div>
+            </div>
+            <div class="how-step">
+                <div class="step-num">02</div>
+                <div class="step-title">BROADCAST A BLOCK</div>
+                <div class="step-desc">Sign a send block locally. Broadcast to the network. Representatives vote. Under 2 seconds to consensus.</div>
+                <div class="step-code">process_block(&#123;<br>&nbsp;&nbsp;type: "send",<br>&nbsp;&nbsp;destination: "kshs_..."<br>&#125;)</div>
+            </div>
+            <div class="how-step">
+                <div class="step-num">03</div>
+                <div class="step-title">RECEIVED & FINAL</div>
+                <div class="step-desc">Recipient pockets the block. Zero fees deducted. 100% of value transferred. Check it live on the explorer.</div>
+                <div class="step-code">// Fee deducted: 0 KSHS<br>// Confirmations: ✓ CEMENTED</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── GET STARTED ── -->
+    <section class="getstarted-section" [class.sm]="vp.sm" id="docs">
+        <a href="https://docs.kakitu.org" class="gs-panel dark" target="_blank">
+            <div class="gs-bg-num">📄</div>
+            <div class="gs-eyebrow">// DOCUMENTATION</div>
+            <div class="gs-title">READ THE DOCS</div>
+            <div class="gs-desc">RPC reference, SDK guides, node setup, protocol documentation. Everything to integrate Kakitu.</div>
+            <div class="gs-btn outline">VIEW DOCS <span>→</span></div>
+        </a>
+        <a href="/explorer" class="gs-panel light">
+            <div class="gs-bg-num" style="color:rgba(8,8,8,0.05)">⚡</div>
+            <div class="gs-eyebrow">// BLOCK EXPLORER</div>
+            <div class="gs-title">EXPLORE THE NETWORK</div>
+            <div class="gs-desc">Watch transactions in real time. Search any address, block or hash. The transparent window into Kakitu.</div>
+            <div class="gs-btn filled">OPEN EXPLORER <span>→</span></div>
+        </a>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer class="site-footer" [class.sm]="vp.sm">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="footer-logo">KAKI<span>TU</span></div>
+                <p>Kenya's digital shilling. An open, feeless, instant payment network. No banks. No middlemen. Just money that works.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Network</h4>
+                <a href="/explorer">Block Explorer</a>
+                <a href="/monitor">Node Monitor</a>
+                <a href="https://api.kakitu.org" target="_blank">API</a>
+                <a href="https://docs.kakitu.org/community/run-a-node" target="_blank">Run a Node</a>
+            </div>
+            <div class="footer-col">
+                <h4>Developers</h4>
+                <a href="https://docs.kakitu.org" target="_blank">Documentation</a>
+                <a href="https://github.com/kakitucurrency" target="_blank">GitHub</a>
+                <a href="https://docs.kakitu.org/integration/rpc-reference" target="_blank">RPC Reference</a>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <a href="https://github.com/kakitucurrency" target="_blank">GitHub</a>
+                <a href="#">Telegram</a>
+                <a href="#">Twitter / X</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="copy">© 2026 KAKITU NETWORK · OPEN SOURCE · MIT LICENSE</span>
+            <div class="footer-links">
+                <a href="https://github.com/kakitucurrency" target="_blank">GitHub ↗</a>
+            </div>
+        </div>
+    </footer>
+
 </div>
