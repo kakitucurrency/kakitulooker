@@ -20,6 +20,7 @@ $display: 'Montserrat', sans-serif;
 }
 
 // Ensure all direct section children span the full width
+.live-ticker,
 .hero,
 .manifesto-strip,
 .why-section,
@@ -31,81 +32,169 @@ $display: 'Montserrat', sans-serif;
     box-sizing: border-box;
 }
 
+// ── LIVE TICKER ───────────────────────────────────────────────────────────
+.live-ticker {
+    position: fixed;
+    top: 64px; // below app toolbar
+    left: 0; right: 0;
+    z-index: 90;
+    height: 28px;
+    background: rgba(0, 255, 106, 0.05);
+    border-bottom: 1px solid rgba(0, 255, 106, 0.12);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+.ticker-track {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker-scroll 28s linear infinite;
+    gap: 0;
+}
+@keyframes ticker-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+.tick-item {
+    font-family: $mono;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(0, 255, 106, 0.55);
+    padding: 0 20px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-right: 1px solid rgba(0, 255, 106, 0.08);
+}
+.tick-dot {
+    width: 5px; height: 5px;
+    background: $green;
+    border-radius: 50%;
+    animation: blink 2s ease infinite;
+    flex-shrink: 0;
+}
+.tick-sep {
+    font-family: $mono;
+    font-size: 11px;
+    color: rgba(0, 255, 106, 0.2);
+    padding: 0 16px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+}
+
 // ── HERO ──────────────────────────────────────────────────────────────────
 .hero {
-    height: calc(100vh - 64px);
+    min-height: calc(100vh - 64px);
+    padding-top: 28px; // account for fixed live ticker
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 148px 80px 80px; // 120px + 28px ticker
     position: relative;
     overflow: hidden;
 
-    &.sm { height: calc(100vh - 56px); }
+    &.sm {
+        padding: 128px 24px 60px;
+        min-height: calc(100vh - 56px);
+    }
+    &.md {
+        padding: 148px 48px 80px;
+    }
 }
 
-.home-body {
-    flex: 1;
+.hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+        linear-gradient($green-trace 1px, transparent 1px),
+        linear-gradient(90deg, $green-trace 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-glow-container {
+    position: absolute; inset: 0;
+    overflow: hidden; pointer-events: none; z-index: 0;
+}
+.hero-glow {
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle at 60% 40%, rgba(0, 255, 106, 0.09) 0%, transparent 60%);
+}
+
+.hero-tag {
+    font-family: $mono;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: $green;
+    margin-bottom: 24px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding-bottom: 180px;
+    gap: 12px;
     position: relative;
-    z-index: 2;
-
-    &.sm { padding-bottom: 80px; }
+    z-index: 1;
+    animation: fade-up 0.8s ease both;
+}
+.tag-dot {
+    width: 6px; height: 6px;
+    background: $green;
+    border-radius: 50%;
+    animation: blink 2s ease infinite;
+    flex-shrink: 0;
 }
 
-.home-title {
-    font-family: pirateFont;
-    font-size: 140px;
-    font-weight: 300;
-    color: #ffffff;
-    text-align: center;
-    line-height: 1;
-    margin-bottom: 4px;
-    text-shadow: 0 0 60px rgba(0, 255, 106, 0.25);
-    animation: fade-up 0.9s ease both;
+h1 {
+    font-family: $display;
+    font-size: clamp(72px, 11vw, 150px);
+    font-weight: 900;
+    line-height: 0.88;
+    letter-spacing: -2px;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+    animation: fade-up 0.8s 0.1s ease both;
 
-    &.md { font-size: 100px; }
-    &.sm { font-size: 64px; }
+    .outline {
+        -webkit-text-stroke: 1.5px rgba(0, 255, 106, 0.5);
+        color: transparent;
+    }
+    .solid { color: #ffffff; }
 }
 
-.home-subtitle {
+.hero-desc {
     font-family: $mono;
     font-size: 13px;
-    letter-spacing: 2px;
-    color: rgba(255, 255, 255, 0.35);
-    text-align: center;
+    color: $text-dim;
+    line-height: 1.8;
+    max-width: 500px;
     margin-bottom: 40px;
-    text-transform: uppercase;
-    animation: fade-up 0.9s 0.15s ease both;
-}
-
-.hero-wave-wrap {
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    pointer-events: none;
+    border-left: 2px solid rgba(0, 255, 106, 0.25);
+    padding-left: 20px;
+    position: relative;
     z-index: 1;
-    min-width: 1200px;
-
-    .hero-wave {
-        display: block;
-        width: 100%;
-        filter: brightness(0.22) sepia(1) hue-rotate(80deg) saturate(8);
-        opacity: 0.85;
-    }
+    animation: fade-up 0.8s 0.2s ease both;
 }
 
 .hero-search {
     display: flex;
-    max-width: 560px;
+    max-width: 600px;
     width: 100%;
-    margin-bottom: 0;
+    margin-bottom: 48px;
     position: relative;
-    z-index: 2;
-    animation: fade-up 0.9s 0.3s ease both;
+    z-index: 1;
+    animation: fade-up 0.8s 0.3s ease both;
 
     &.sm {
         flex-direction: column;
@@ -144,9 +233,51 @@ $display: 'Montserrat', sans-serif;
     }
 }
 
+// Stats ticker boxes
+.ticker {
+    display: flex;
+    gap: 2px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+    animation: fade-up 0.8s 0.4s ease both;
+
+    .tick {
+        background: $bg2;
+        border: 1px solid rgba(0, 255, 106, 0.15);
+        padding: 14px 24px;
+        position: relative;
+        min-width: 120px;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, $green, transparent);
+        }
+
+        .tick-val {
+            font-family: $mono;
+            font-size: 26px;
+            font-weight: 600;
+            color: $green;
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px rgba(0, 255, 106, 0.3);
+        }
+        .tick-lbl {
+            font-family: $mono;
+            font-size: 8px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: $text-dim;
+            margin-top: 6px;
+        }
+    }
+}
+
 @keyframes fade-up {
-    from { opacity: 0; transform: translateY(28px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 // ── MANIFESTO STRIP ───────────────────────────────────────────────────────

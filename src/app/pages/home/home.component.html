@@ -1,47 +1,96 @@
 <div class="app-page-root home-root">
 
+    <!-- Live Ticker Bar -->
+    <div class="live-ticker">
+        <div class="ticker-track">
+            <span class="tick-item"><span class="tick-dot"></span> KSHS LIVE</span>
+            <span class="tick-item">BLOCK CONFIRMATION ~2 SECONDS</span>
+            <span class="tick-item">TRANSACTION FEES 0 KSHS</span>
+            <span class="tick-item">OPEN SOURCE · FULLY DECENTRALIZED</span>
+            <span class="tick-item">P2P · PEERING.KAKITU.ORG:56111</span>
+            <span class="tick-item">BUILT ON NANO PROTOCOL</span>
+            <span class="tick-item">14 ECOSYSTEM TOOLS</span>
+            <span class="tick-sep">///</span>
+            <span class="tick-item"><span class="tick-dot"></span> KSHS LIVE</span>
+            <span class="tick-item">BLOCK CONFIRMATION ~2 SECONDS</span>
+            <span class="tick-item">TRANSACTION FEES 0 KSHS</span>
+            <span class="tick-item">OPEN SOURCE · FULLY DECENTRALIZED</span>
+            <span class="tick-item">P2P · PEERING.KAKITU.ORG:56111</span>
+            <span class="tick-item">BUILT ON NANO PROTOCOL</span>
+            <span class="tick-item">14 ECOSYSTEM TOOLS</span>
+            <span class="tick-sep">///</span>
+        </div>
+    </div>
+
     <!-- ── HERO ── -->
     <section class="hero" [class.sm]="vp.sm" [class.md]="vp.md">
+        <div class="hero-glow-container"><div class="hero-glow"></div></div>
+        <div class="hero-grid-bg"></div>
 
-        <!-- centered content -->
-        <div class="home-body">
-            <div class="home-title" [class.sm]="vp.sm" [class.md]="vp.md">Kakitu Looker</div>
+        <div class="hero-tag">
+            <span class="tag-dot"></span>
+            // KSHS &middot; Kenya's Digital Shilling &middot; Live Network
+        </div>
 
-            <p class="home-subtitle">Explore Kenya's digital shilling network</p>
+        <h1>
+            <span class="solid">KAKI</span><span class="outline">TU</span><br />
+            <span class="outline">NET</span><span class="solid">WORK</span>
+        </h1>
 
-            <div class="hero-search" [class.sm]="vp.sm">
-                <mat-form-field appearance="outline">
-                    <mat-label>Address or Hash</mat-label>
-                    <input
-                        matInput
-                        autocomplete="off"
-                        (focus)="touchedIdField = true; idFieldActive = true"
-                        (blur)="idFieldActive = false"
-                        [formControl]="searchFormControl"
-                        (keyup.enter)="search(searchFormControl.value, $event)"
-                    />
-                </mat-form-field>
-                <button
-                    [class.sm]="vp.sm"
-                    class="hero-search-button"
-                    mat-flat-button
-                    color="accent"
-                    [disabled]="loading || !searchFormControl.value"
-                    (click)="search(searchFormControl.value, $event)"
-                >
-                    <div [class.home-loading]="loading">
-                        <mat-spinner *ngIf="loading" [diameter]="18" [style.marginRight.px]="16"></mat-spinner>
-                        Search
-                    </div>
-                </button>
+        <p class="hero-desc">
+            A feeless, instant, open-source payment network built for Kenya.<br />
+            No banks. No middlemen. No waiting. Kenya has been overcharged for long enough.
+        </p>
+
+        <div class="hero-search" [class.sm]="vp.sm">
+            <mat-form-field appearance="outline">
+                <mat-label>Search address, block or hash</mat-label>
+                <input
+                    matInput
+                    autocomplete="off"
+                    (focus)="touchedIdField = true; idFieldActive = true"
+                    (blur)="idFieldActive = false"
+                    [formControl]="searchFormControl"
+                    (keyup.enter)="search(searchFormControl.value, $event)"
+                />
+            </mat-form-field>
+            <button
+                [class.sm]="vp.sm"
+                class="hero-search-button"
+                mat-flat-button
+                color="accent"
+                [disabled]="loading || !searchFormControl.value"
+                (click)="search(searchFormControl.value, $event)"
+            >
+                <div [class.home-loading]="loading">
+                    <mat-spinner *ngIf="loading" [diameter]="18" [style.marginRight.px]="16"></mat-spinner>
+                    Search
+                </div>
+            </button>
+        </div>
+
+        <div class="ticker">
+            <div class="tick">
+                <div class="tick-val">~2s</div>
+                <div class="tick-lbl">Confirmation</div>
+            </div>
+            <div class="tick">
+                <div class="tick-val">0</div>
+                <div class="tick-lbl">Fee (KSHS)</div>
+            </div>
+            <div class="tick">
+                <div class="tick-val">Live</div>
+                <div class="tick-lbl">Network</div>
+            </div>
+            <div class="tick">
+                <div class="tick-val">14</div>
+                <div class="tick-lbl">Tools</div>
+            </div>
+            <div class="tick">
+                <div class="tick-val">&#8734;</div>
+                <div class="tick-lbl">Scalable</div>
             </div>
         </div>
-
-        <!-- wave pinned to bottom of hero -->
-        <div class="hero-wave-wrap">
-            <img src="assets/waves/wave1.svg" class="hero-wave" />
-        </div>
-
     </section>
 
     <!-- ── MANIFESTO STRIP ── -->
