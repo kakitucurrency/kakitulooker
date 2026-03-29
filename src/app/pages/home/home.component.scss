@@ -155,12 +155,12 @@ $display: 'Montserrat', sans-serif;
     flex-shrink: 0;
 }
 
-h1 {
-    font-family: $display;
-    font-size: clamp(72px, 11vw, 150px);
-    font-weight: 900;
-    line-height: 0.88;
-    letter-spacing: -2px;
+.hero h1 {
+    font-family: $display !important;
+    font-size: clamp(72px, 11vw, 150px) !important;
+    font-weight: 900 !important;
+    line-height: 0.88 !important;
+    letter-spacing: -2px !important;
     margin-bottom: 32px;
     position: relative;
     z-index: 1;
@@ -335,9 +335,9 @@ h1 {
     margin-bottom: 16px;
 }
 .section-title {
-    font-family: $display;
-    font-size: clamp(40px, 5vw, 72px);
-    font-weight: 900;
+    font-family: $display !important;
+    font-size: clamp(40px, 5vw, 72px) !important;
+    font-weight: 900 !important;
     letter-spacing: -1px;
     color: #fff;
     line-height: 0.92;
@@ -718,8 +718,8 @@ h1 {
     }
     .footer-col {
         h4 {
-            font-family: $mono;
-            font-size: 8px;
+            font-family: $mono !important;
+            font-size: 8px !important;
             letter-spacing: 4px;
             text-transform: uppercase;
             color: $green;
