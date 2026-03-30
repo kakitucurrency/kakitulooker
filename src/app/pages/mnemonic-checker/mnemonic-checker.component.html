@@ -17,8 +17,9 @@
 
     <!-- Paste area -->
     <div class="mc-section">
-        <label class="mc-label">Mnemonic Phrase</label>
+        <label class="mc-label" for="mc-phrase-input">Mnemonic Phrase</label>
         <textarea
+            id="mc-phrase-input"
             class="mc-textarea"
             [(ngModel)]="phrase"
             (input)="onPhraseChange()"
@@ -57,7 +58,7 @@
         <div class="mc-address-label">Derived Address (index 0)</div>
         <div class="mc-address-row">
             <span class="mc-address-value">{{ result.address }}</span>
-            <button mat-icon-button (click)="copyAddress()" matTooltip="{{ copied ? 'Copied!' : 'Copy address' }}">
+            <button mat-icon-button (click)="copyAddress()" [matTooltip]="copied ? 'Copied!' : 'Copy address'">
                 <mat-icon>{{ copied ? 'check' : 'content_copy' }}</mat-icon>
             </button>
             <button mat-icon-button (click)="openExplorer()" matTooltip="View in Explorer">
@@ -68,8 +69,9 @@
 
     <!-- Cross-check field -->
     <div class="mc-section" *ngIf="result?.address">
-        <label class="mc-label">Cross-check address (optional)</label>
+        <label class="mc-label" for="mc-crosscheck-input">Cross-check address (optional)</label>
         <input
+            id="mc-crosscheck-input"
             class="mc-input"
             type="text"
             [(ngModel)]="expectedAddress"
