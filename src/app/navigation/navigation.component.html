@@ -31,6 +31,19 @@
                     <mat-icon blui-icon>{{ navItem.icon }}</mat-icon>
                 </blui-drawer-nav-item>
             </blui-drawer-nav-group>
+
+            <blui-drawer-nav-group title="Tools" [divider]="true">
+                <blui-drawer-nav-item
+                    *ngFor="let navItem of toolsNavGroup"
+                    [divider]="true"
+                    [title]="navItem.title"
+                    [subtitle]="navItem.subtitle"
+                    [selected]="navItem.title === getSelectedItem()"
+                    (select)="selectItem(navItem)"
+                >
+                    <mat-icon blui-icon>{{ navItem.icon }}</mat-icon>
+                </blui-drawer-nav-item>
+            </blui-drawer-nav-group>
         </blui-drawer-body>
     </blui-drawer>
     <div blui-content class="navigation-drawer-content" [class.home]="isHome()" responsive>

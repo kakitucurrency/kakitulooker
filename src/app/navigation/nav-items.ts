@@ -53,6 +53,12 @@ const vanityNavItem: NavItem = {
     icon: undefined,
 };
 
+const paperWalletNavItem: NavItem = {
+    title: 'Paper Wallet',
+    route: 'paper-wallet',
+    icon: 'print',
+};
+
 export const hashNavItem = {
     title: 'Block Hash',
     route: 'hash',
@@ -72,9 +78,11 @@ export const APP_NAV_ITEMS = {
     network: networkNavItem,
     node: nodeNavItem,
     vanity: vanityNavItem,
+    paperWallet: paperWalletNavItem,
     hash: hashNavItem,
     account: accountNavItem,
 };
 
 export const EXPLORER_NAV_GROUP = [homeNavItem, walletsNavItem, knownAccountsNavItem];
 export const NETWORK_NAV_GROUP = [networkNavItem, representativesNavItem, nodeNavItem];
+export const TOOLS_NAV_GROUP = [paperWalletNavItem];

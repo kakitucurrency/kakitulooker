@@ -10,6 +10,7 @@ import { WalletsModule } from '@app/pages/wallets/wallets.module';
 import { NavigationModule } from './navigation/navigation.module';
 import { NetworkModule } from '@app/pages/network/network.module';
 import { VanityModule } from '@app/pages/vanity/vanity.module';
+import { PaperWalletModule } from '@app/pages/paper-wallet/paper-wallet.module';
 import { HomeModule } from '@app/pages/home/home.module';
 import { AccountModule } from '@app/pages/account/account.module';
 import { HashModule } from '@app/pages/hash/hash.module';
@@ -36,6 +37,7 @@ export class AppComponent {}
         RepresentativesModule,
         RouterModule,
         VanityModule,
+        PaperWalletModule,
         WalletsModule,
     ],
     bootstrap: [AppComponent],

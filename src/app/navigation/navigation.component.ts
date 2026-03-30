@@ -3,7 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ViewportService } from '../services/viewport/viewport.service';
 import { DrawerStateService } from '../services/drawer-state/drawer-state.service';
-import { APP_NAV_ITEMS, NavItem, EXPLORER_NAV_GROUP, NETWORK_NAV_GROUP } from './nav-items';
+import { APP_NAV_ITEMS, NavItem, EXPLORER_NAV_GROUP, NETWORK_NAV_GROUP, TOOLS_NAV_GROUP } from './nav-items';
 import { SearchService } from '@app/services/search/search.service';
 import { Meta, Title } from '@angular/platform-browser';
 
@@ -22,6 +22,7 @@ export class NavigationComponent implements OnInit {
 
     explorerNavGroup = EXPLORER_NAV_GROUP;
     networkNavGroup = NETWORK_NAV_GROUP;
+    toolsNavGroup = TOOLS_NAV_GROUP;
 
     constructor(
         public vp: ViewportService,
@@ -209,6 +210,16 @@ export class NavigationComponent implements OnInit {
                         this._meta.updateTag({
                             name: 'description',
                             content: 'Kakitu addresses with custom vanity avatars.',
+                        });
+                        break;
+                    }
+                    case `${APP_NAV_ITEMS.paperWallet.route}`: {
+                        this.toolbarTitle = APP_NAV_ITEMS.paperWallet.title;
+                        this._stateService.setSelectedItem(APP_NAV_ITEMS.paperWallet.title);
+                        this._title.setTitle(this._makeTitle('Paper Wallet'));
+                        this._meta.updateTag({
+                            name: 'description',
+                            content: 'Generate offline-safe Kakitu paper wallets in your browser.',
                         });
                         break;
                     }

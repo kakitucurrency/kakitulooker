@@ -1,0 +1,116 @@
+<div class="paper-wallet-page">
+    <!-- Header -->
+    <div class="pw-header no-print">
+        <h1 class="pw-title">Paper Wallet Generator</h1>
+        <p class="pw-subtitle">
+            Generate offline-safe Kakitu paper wallets. Your keys are created locally in your browser — nothing is sent to any server.
+        </p>
+
+        <div class="pw-controls">
+            <div class="pw-qty-row">
+                <span class="pw-label">Number of wallets</span>
+                <div class="pw-qty-buttons">
+                    <button mat-icon-button (click)="quantity = quantity > 1 ? quantity - 1 : 1">
+                        <mat-icon>remove</mat-icon>
+                    </button>
+                    <span class="pw-qty-value">{{ quantity }}</span>
+                    <button mat-icon-button (click)="quantity = quantity < 10 ? quantity + 1 : 10">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <button mat-raised-button color="primary" class="pw-generate-btn" (click)="generate()" [disabled]="generating">
+                <mat-icon>refresh</mat-icon>
+                {{ generating ? 'Generating…' : 'Generate' }}
+            </button>
+        </div>
+
+        <div class="pw-action-row" *ngIf="wallets.length > 0">
+            <button mat-stroked-button color="primary" (click)="print()">
+                <mat-icon>print</mat-icon>
+                Print
+            </button>
+            <button mat-stroked-button color="primary" (click)="copyAll()">
+                <mat-icon>{{ copied ? 'check' : 'content_copy' }}</mat-icon>
+                {{ copied ? 'Copied!' : 'Copy All' }}
+            </button>
+        </div>
+    </div>
+
+    <!-- Empty state -->
+    <div class="pw-empty no-print" *ngIf="wallets.length === 0 && !generating">
+        <mat-icon class="pw-empty-icon">account_balance_wallet</mat-icon>
+        <p>Click <strong>Generate</strong> to create your paper wallets.</p>
+        <p class="pw-warning">
+            <mat-icon style="font-size:16px;vertical-align:middle">warning</mat-icon>
+            Store your seed securely — it cannot be recovered if lost.
+        </p>
+    </div>
+
+    <!-- Spinner -->
+    <div class="pw-spinner no-print" *ngIf="generating">
+        <mat-progress-spinner mode="indeterminate" diameter="48" color="primary"></mat-progress-spinner>
+    </div>
+
+    <!-- Wallet cards (screen) -->
+    <div class="pw-cards no-print" *ngIf="wallets.length > 0">
+        <div class="pw-card" *ngFor="let w of wallets; let i = index">
+            <div class="pw-card-header">
+                <span class="pw-card-num">Wallet #{{ i + 1 }}</span>
+                <span class="pw-badge">KSHS</span>
+            </div>
+
+            <div class="pw-card-body">
+                <div class="pw-qr-section">
+                    <img [src]="w.addressQr" class="pw-qr" alt="Address QR" />
+                    <span class="pw-qr-label">Public Address</span>
+                </div>
+
+                <div class="pw-info">
+                    <div class="pw-field">
+                        <span class="pw-field-label">Address</span>
+                        <span class="pw-field-value pw-mono">{{ w.address }}</span>
+                    </div>
+                    <div class="pw-field">
+                        <span class="pw-field-label pw-danger">Seed (Keep Secret!)</span>
+                        <span class="pw-field-value pw-mono pw-seed">{{ w.seed }}</span>
+                    </div>
+                </div>
+
+                <div class="pw-qr-section">
+                    <img [src]="w.seedQr" class="pw-qr" alt="Seed QR" />
+                    <span class="pw-qr-label pw-danger">Private Seed</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Print layout (hidden on screen, shown on print) -->
+    <div class="print-only" *ngIf="wallets.length > 0">
+        <div class="print-wallet" *ngFor="let w of wallets; let i = index">
+            <div class="print-top">
+                <div class="print-left">
+                    <img [src]="w.addressQr" class="print-qr" />
+                    <div class="print-label">Public Address</div>
+                </div>
+                <div class="print-center">
+                    <div class="print-logo">KAKITU</div>
+                    <div class="print-kshs">KSHS Paper Wallet</div>
+                    <div class="print-wallet-num">Wallet #{{ i + 1 }}</div>
+                    <div class="print-address-text">{{ w.address }}</div>
+                </div>
+                <div class="print-right">
+                    <img [src]="w.seedQr" class="print-qr" />
+                    <div class="print-label print-danger">PRIVATE SEED</div>
+                </div>
+            </div>
+            <div class="print-seed-row">
+                <span class="print-seed-label">SEED: </span>
+                <span class="print-seed-value">{{ w.seed }}</span>
+            </div>
+            <div class="print-warning">⚠ Keep this seed secret. Anyone with this seed controls your funds.</div>
+            <div class="print-divider"></div>
+        </div>
+    </div>
+</div>
