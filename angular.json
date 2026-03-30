@@ -32,7 +32,11 @@
                             "src/styles.scss",
                             "./node_modules/@brightlayer-ui/angular-themes/open-sans.scss"
                         ],
-                        "scripts": []
+                        "scripts": [],
+                        "allowedCommonJsDependencies": [
+                            "bip39",
+                            "qrcode"
+                        ]
                     },
                     "configurations": {
                         "megaphone": {

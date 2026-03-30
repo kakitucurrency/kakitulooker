@@ -36,7 +36,6 @@ export class MnemonicCheckerComponent {
 
     wordCountLabel(): string {
         if (!this.result) return '';
-        const target = this.result.wordCount <= 12 ? 12 : 24;
-        return `${this.result.wordCount} / ${target} words`;
+        return `${this.result.wordCount} / 24 words`;
     }
 }
