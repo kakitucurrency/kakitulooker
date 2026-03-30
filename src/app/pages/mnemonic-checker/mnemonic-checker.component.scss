@@ -1,3 +1,197 @@
 .mc-page {
     padding: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.mc-header {
+    margin-bottom: 24px;
+}
+
+.mc-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 8px;
+}
+
+.mc-subtitle {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    margin: 0;
+    max-width: 620px;
+}
+
+.mc-warning-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 28px;
+
+    strong { color: #ffc107; }
+}
+
+.mc-lock-icon {
+    color: #ffc107;
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+    flex-shrink: 0;
+}
+
+.mc-section {
+    margin-bottom: 24px;
+}
+
+.mc-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 8px;
+}
+
+.mc-textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 15px;
+    font-family: 'Courier New', monospace;
+    padding: 12px 14px;
+    resize: vertical;
+    outline: none;
+    line-height: 1.6;
+
+    &::placeholder { color: rgba(255, 255, 255, 0.3); }
+    &:focus { border-color: rgba(255, 255, 255, 0.4); }
+}
+
+.mc-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    padding: 10px 14px;
+    outline: none;
+
+    &::placeholder { color: rgba(255, 255, 255, 0.3); }
+    &:focus { border-color: rgba(255, 255, 255, 0.4); }
+}
+
+/* Word chips */
+.mc-chips-section {
+    margin-bottom: 24px;
+}
+
+.mc-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.mc-chip {
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+    padding: 3px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.6);
+
+    &.chip-valid {
+        border-color: #4caf50;
+        color: #81c784;
+        background: rgba(76, 175, 80, 0.08);
+    }
+
+    &.chip-invalid {
+        border-color: #f44336;
+        color: #e57373;
+        background: rgba(244, 67, 54, 0.08);
+    }
+}
+
+.mc-chips-footer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+}
+
+.mc-word-count {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.mc-checksum {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+
+    mat-icon { font-size: 16px; height: 16px; width: 16px; }
+
+    &.checksum-ok { color: #4caf50; }
+    &.checksum-fail { color: #f44336; }
+}
+
+/* Derived address panel */
+.mc-address-panel {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+}
+
+.mc-address-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 8px;
+}
+
+.mc-address-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.mc-address-value {
+    flex: 1;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    word-break: break-all;
+    color: #fff;
+    line-height: 1.5;
+}
+
+/* Match result */
+.mc-match-result {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+
+    mat-icon { font-size: 18px; height: 18px; width: 18px; }
+
+    &.match-ok { color: #4caf50; }
+    &.match-fail { color: #f44336; }
 }

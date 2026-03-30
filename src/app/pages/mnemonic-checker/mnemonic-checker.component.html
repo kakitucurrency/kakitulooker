@@ -1,3 +1,88 @@
 <div class="mc-page">
-    <p>Mnemonic Checker — coming soon</p>
+
+    <!-- Header -->
+    <div class="mc-header">
+        <h1 class="mc-title">Mnemonic Seed Checker</h1>
+        <p class="mc-subtitle">
+            Validate a BIP39 mnemonic phrase and derive the corresponding Kakitu wallet address.
+            Cross-check it against an address you already know to verify your backup.
+        </p>
+    </div>
+
+    <!-- Security warning -->
+    <div class="mc-warning-banner">
+        <mat-icon class="mc-lock-icon">lock</mat-icon>
+        <span>This tool runs entirely in your browser. Your seed phrase is <strong>never sent to any server.</strong></span>
+    </div>
+
+    <!-- Paste area -->
+    <div class="mc-section">
+        <label class="mc-label">Mnemonic Phrase</label>
+        <textarea
+            class="mc-textarea"
+            [(ngModel)]="phrase"
+            (input)="onPhraseChange()"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="none"
+            spellcheck="false"
+            placeholder="Enter your 24 word mnemonic phrase..."
+            rows="4"
+        ></textarea>
+    </div>
+
+    <!-- Word chips + counter -->
+    <div class="mc-chips-section" *ngIf="result && result.wordCount > 0">
+        <div class="mc-chips">
+            <span
+                *ngFor="let w of result.words"
+                class="mc-chip"
+                [class.chip-valid]="w.valid"
+                [class.chip-invalid]="!w.valid"
+            >{{ w.word }}</span>
+        </div>
+        <div class="mc-chips-footer">
+            <span class="mc-word-count">{{ wordCountLabel() }}</span>
+            <span *ngIf="result.wordCount === 24" class="mc-checksum"
+                [class.checksum-ok]="result.checksumValid"
+                [class.checksum-fail]="!result.checksumValid">
+                <mat-icon>{{ result.checksumValid ? 'check_circle' : 'cancel' }}</mat-icon>
+                {{ result.checksumValid ? 'Valid checksum' : 'Invalid checksum' }}
+            </span>
+        </div>
+    </div>
+
+    <!-- Derived address panel -->
+    <div class="mc-address-panel" *ngIf="result?.address">
+        <div class="mc-address-label">Derived Address (index 0)</div>
+        <div class="mc-address-row">
+            <span class="mc-address-value">{{ result.address }}</span>
+            <button mat-icon-button (click)="copyAddress()" matTooltip="{{ copied ? 'Copied!' : 'Copy address' }}">
+                <mat-icon>{{ copied ? 'check' : 'content_copy' }}</mat-icon>
+            </button>
+            <button mat-icon-button (click)="openExplorer()" matTooltip="View in Explorer">
+                <mat-icon>open_in_new</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <!-- Cross-check field -->
+    <div class="mc-section" *ngIf="result?.address">
+        <label class="mc-label">Cross-check address (optional)</label>
+        <input
+            class="mc-input"
+            type="text"
+            [(ngModel)]="expectedAddress"
+            autocomplete="off"
+            autocapitalize="none"
+            placeholder="Paste a kshs_ address to verify it matches..."
+        />
+        <div class="mc-match-result" *ngIf="matchStatus !== 'none'"
+            [class.match-ok]="matchStatus === 'match'"
+            [class.match-fail]="matchStatus === 'mismatch'">
+            <mat-icon>{{ matchStatus === 'match' ? 'check_circle' : 'cancel' }}</mat-icon>
+            {{ matchStatus === 'match' ? 'Address matches' : 'Address does not match' }}
+        </div>
+    </div>
+
 </div>
