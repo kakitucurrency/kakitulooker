@@ -41,7 +41,7 @@ export class WalletGen {
 
     private static hexToUint4(hex: string): Uint8Array {
         const u = new Uint8Array(hex.length);
-        for (let i = 0; i < hex.length; i++) u[i] = parseInt(hex.substr(i, 1), 16);
+        for (let i = 0; i < hex.length; i++) u[i] = parseInt(hex.slice(i, i + 1), 16);
         return u;
     }
 
