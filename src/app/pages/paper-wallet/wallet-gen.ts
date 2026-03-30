@@ -10,7 +10,8 @@ export class WalletGen {
     static async genWallet(): Promise<GeneratedWallet> {
         const seed = nacl.randomBytes(32);
         const privateKey = WalletGen.deriveSecretKey(seed, 0);
-        const publicKey = nacl.sign.keyPair.fromSecretKey(privateKey).publicKey;
+        // fromSeed takes 32-byte scalar; fromSecretKey requires 64-byte expanded key
+        const publicKey = nacl.sign.keyPair.fromSeed(privateKey).publicKey;
         const address = WalletGen.getAddressFromPublic(publicKey);
         return { seed: WalletGen.uint8ToHex(seed), address };
     }
@@ -29,8 +30,10 @@ export class WalletGen {
     static getAddressFromPublic(publicKeyBytes: Uint8Array, prefix = 'kshs'): string {
         const accountHex = WalletGen.uint8ToHex(publicKeyBytes);
         const keyBytes = WalletGen.uint4ToUint8(WalletGen.hexToUint4(accountHex));
+        const checksumBytes = blake2b(keyBytes, null, 5) as Uint8Array;
+        checksumBytes.reverse();
         const checksum = WalletGen.uint5ToString(
-            WalletGen.uint4ToUint5(WalletGen.uint8ToUint4(blake2b(keyBytes, null, 5).reverse()))
+            WalletGen.uint4ToUint5(WalletGen.uint8ToUint4(checksumBytes))
         );
         const account = WalletGen.uint5ToString(WalletGen.uint4ToUint5(WalletGen.hexToUint4(`0${accountHex}`)));
         return `${prefix}_${account}${checksum}`;
