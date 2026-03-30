@@ -23,9 +23,10 @@ export class MnemonicCheckerComponent {
 
     copyAddress(): void {
         if (!this.result?.address) return;
-        navigator.clipboard.writeText(this.result.address);
-        this.copied = true;
-        setTimeout(() => (this.copied = false), 2000);
+        navigator.clipboard.writeText(this.result.address).then(() => {
+            this.copied = true;
+            setTimeout(() => (this.copied = false), 2000);
+        }).catch(() => {});
     }
 
     openExplorer(): void {
