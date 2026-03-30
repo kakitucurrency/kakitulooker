@@ -16,7 +16,7 @@ export class WalletGen {
         return { seed: WalletGen.uint8ToHex(seed), address };
     }
 
-    private static deriveSecretKey(seedBytes: Uint8Array, index: number): Uint8Array {
+    static deriveSecretKey(seedBytes: Uint8Array, index: number): Uint8Array {
         const indexBuffer = new ArrayBuffer(4);
         const indexView = new DataView(indexBuffer);
         indexView.setUint32(0, index);
