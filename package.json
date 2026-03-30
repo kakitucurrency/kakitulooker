@@ -36,6 +36,7 @@
         "@brightlayer-ui/ng-progress-icons": "^1.2.1",
         "@dev-ptera/nano-node-rpc": "^2.0.2",
         "banano-unit-converter": "^0.1.0",
+        "bip39": "^3.1.0",
         "blakejs": "^1.2.1",
         "core-js": "^2.5.4",
         "highcharts": "^9.1.2",
