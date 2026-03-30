@@ -59,6 +59,12 @@ const paperWalletNavItem: NavItem = {
     icon: 'print',
 };
 
+const mnemonicCheckerNavItem: NavItem = {
+    title: 'Mnemonic Checker',
+    route: 'mnemonic-checker',
+    icon: 'fact_check',
+};
+
 export const hashNavItem = {
     title: 'Block Hash',
     route: 'hash',
@@ -79,10 +85,11 @@ export const APP_NAV_ITEMS = {
     node: nodeNavItem,
     vanity: vanityNavItem,
     paperWallet: paperWalletNavItem,
+    mnemonicChecker: mnemonicCheckerNavItem,
     hash: hashNavItem,
     account: accountNavItem,
 };
 
 export const EXPLORER_NAV_GROUP = [homeNavItem, walletsNavItem, knownAccountsNavItem];
 export const NETWORK_NAV_GROUP = [networkNavItem, representativesNavItem, nodeNavItem];
-export const TOOLS_NAV_GROUP = [paperWalletNavItem];
+export const TOOLS_NAV_GROUP = [paperWalletNavItem, mnemonicCheckerNavItem];

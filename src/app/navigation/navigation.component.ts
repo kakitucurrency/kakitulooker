@@ -223,6 +223,16 @@ export class NavigationComponent implements OnInit {
                         });
                         break;
                     }
+                    case `${APP_NAV_ITEMS.mnemonicChecker.route}`: {
+                        this.toolbarTitle = APP_NAV_ITEMS.mnemonicChecker.title;
+                        this._stateService.setSelectedItem(APP_NAV_ITEMS.mnemonicChecker.title);
+                        this._title.setTitle(this._makeTitle('Mnemonic Checker'));
+                        this._meta.updateTag({
+                            name: 'description',
+                            content: 'Validate a BIP39 mnemonic phrase and derive its Kakitu wallet address.',
+                        });
+                        break;
+                    }
                     default: {
                         this.toolbarTitle = '';
                     }

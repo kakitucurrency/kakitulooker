@@ -25,7 +25,7 @@ const routes: Routes = [
     { path: APP_NAV_ITEMS.network.route, component: NetworkComponent },
     { path: APP_NAV_ITEMS.vanity.route, component: VanityComponent },
     { path: APP_NAV_ITEMS.paperWallet.route, component: PaperWalletComponent },
-    { path: 'mnemonic-checker', component: MnemonicCheckerComponent }, // TODO Task 4: replace with APP_NAV_ITEMS.mnemonicChecker.route
+    { path: APP_NAV_ITEMS.mnemonicChecker.route, component: MnemonicCheckerComponent },
     { path: `explorer/${APP_NAV_ITEMS.account.route}/:id/history`, component: AccountComponent }, // Match Explorer legacy path
     { path: `explorer/${APP_NAV_ITEMS.account.route}/:id`, component: AccountComponent }, // Match Explorer legacy path
     { path: `${APP_NAV_ITEMS.account.route}/:id`, component: AccountComponent },
