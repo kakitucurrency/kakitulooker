@@ -9,6 +9,7 @@ import { KnownAccountsComponent } from '@app/pages/known-accounts/known-accounts
 import { NetworkComponent } from '@app/pages/network/network.component';
 import { VanityComponent } from '@app/pages/vanity/vanity.component';
 import { PaperWalletComponent } from '@app/pages/paper-wallet/paper-wallet.component';
+import { MnemonicCheckerComponent } from '@app/pages/mnemonic-checker/mnemonic-checker.component';
 import { HomeComponent } from '@app/pages/home/home.component';
 import { AccountComponent } from '@app/pages/account/account.component';
 import { HashComponent } from '@app/pages/hash/hash.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
     { path: APP_NAV_ITEMS.network.route, component: NetworkComponent },
     { path: APP_NAV_ITEMS.vanity.route, component: VanityComponent },
     { path: APP_NAV_ITEMS.paperWallet.route, component: PaperWalletComponent },
+    { path: 'mnemonic-checker', component: MnemonicCheckerComponent },
     { path: `explorer/${APP_NAV_ITEMS.account.route}/:id/history`, component: AccountComponent }, // Match Explorer legacy path
     { path: `explorer/${APP_NAV_ITEMS.account.route}/:id`, component: AccountComponent }, // Match Explorer legacy path
     { path: `${APP_NAV_ITEMS.account.route}/:id`, component: AccountComponent },

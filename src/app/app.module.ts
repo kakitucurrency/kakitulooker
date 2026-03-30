@@ -11,6 +11,7 @@ import { NavigationModule } from './navigation/navigation.module';
 import { NetworkModule } from '@app/pages/network/network.module';
 import { VanityModule } from '@app/pages/vanity/vanity.module';
 import { PaperWalletModule } from '@app/pages/paper-wallet/paper-wallet.module';
+import { MnemonicCheckerModule } from '@app/pages/mnemonic-checker/mnemonic-checker.module';
 import { HomeModule } from '@app/pages/home/home.module';
 import { AccountModule } from '@app/pages/account/account.module';
 import { HashModule } from '@app/pages/hash/hash.module';
@@ -38,6 +39,7 @@ export class AppComponent {}
         RouterModule,
         VanityModule,
         PaperWalletModule,
+        MnemonicCheckerModule,
         WalletsModule,
     ],
     bootstrap: [AppComponent],
