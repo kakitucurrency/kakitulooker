@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppCommonModule } from '@app/common/app-common.module';
 import { AppUserMenuComponent } from './user-menu/user-menu.component';
 import { FormsModule } from '@angular/forms';
@@ -19,6 +20,7 @@ import { FormsModule } from '@angular/forms';
         DrawerLayoutModule,
         DrawerModule,
         MatButtonModule,
+        MatSnackBarModule,
         MatToolbarModule,
         RouterModule,
         UserMenuModule,

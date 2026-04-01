@@ -6,6 +6,7 @@ import { DrawerStateService } from '../services/drawer-state/drawer-state.servic
 import { APP_NAV_ITEMS, NavItem, EXPLORER_NAV_GROUP, NETWORK_NAV_GROUP, TOOLS_NAV_GROUP } from './nav-items';
 import { SearchService } from '@app/services/search/search.service';
 import { Meta, Title } from '@angular/platform-browser';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-navigation',
@@ -31,7 +32,8 @@ export class NavigationComponent implements OnInit {
         private readonly _router: Router,
         private readonly _searchService: SearchService,
         private readonly _viewportService: ViewportService,
-        private readonly _stateService: DrawerStateService
+        private readonly _stateService: DrawerStateService,
+        private readonly _snackBar: MatSnackBar
     ) {
         this._listenForRouteChanges();
     }
@@ -51,6 +53,10 @@ export class NavigationComponent implements OnInit {
                     void this._router.navigate([`${APP_NAV_ITEMS.hash.route}/${data.search}`]);
                 }
             }
+        });
+
+        this._searchService.searchErrorEvents().subscribe((errorMsg: string) => {
+            this._snackBar.open(errorMsg, 'Dismiss', { duration: 5000 });
         });
     }
 
