@@ -40,9 +40,9 @@ export class NavigationComponent implements OnInit {
         this._searchService.searchEvents().subscribe((data: { search: string; openInNewWindow: boolean }) => {
             if (data.openInNewWindow) {
                 if (data.search.startsWith('kshs_')) {
-                    window.open(`https://kakitu.org/${APP_NAV_ITEMS.account.route}/${data.search}`, '_blank');
+                    window.open(`${window.location.origin}/${APP_NAV_ITEMS.account.route}/${data.search}`, '_blank');
                 } else {
-                    window.open(`https://kakitu.org/${APP_NAV_ITEMS.hash.route}/${data.search}`, '_blank');
+                    window.open(`${window.location.origin}/${APP_NAV_ITEMS.hash.route}/${data.search}`, '_blank');
                 }
             } else {
                 if (data.search.startsWith('kshs_')) {

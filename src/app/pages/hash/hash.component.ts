@@ -149,7 +149,11 @@ import { ApiService } from '@app/services/api/api.service';
 
         <div class="hash-root app-page-root" responsive>
             <div class="app-page-content">
-                <app-error *ngIf="error"></app-error>
+                <div *ngIf="notFound" class="hash-section" style="text-align: center; padding: 48px 0;">
+                    <span class="app-section-title">Block Not Found</span>
+                    <div class="hash-description">The block hash {{ hash }} does not exist on the Kakitu network.</div>
+                </div>
+                <app-error *ngIf="error && !notFound"></app-error>
                 <ng-container *ngIf="!error">
                     <ng-template [ngTemplateOutlet]="titleContent"></ng-template>
                     <ng-template *ngIf="!loading" [ngTemplateOutlet]="bodyContent"></ng-template>
@@ -165,6 +169,7 @@ export class HashComponent implements OnDestroy {
     block: BlockDto;
     loading: boolean;
     error: boolean;
+    notFound: boolean;
 
     routeListener: Subscription;
 
@@ -195,6 +200,7 @@ export class HashComponent implements OnDestroy {
         this.block = undefined;
         this.loading = true;
         this.error = false;
+        this.notFound = false;
 
         this._ref.detectChanges();
 
@@ -209,6 +215,7 @@ export class HashComponent implements OnDestroy {
             .catch((err) => {
                 console.error(err);
                 this.loading = false;
+                this.notFound = err?.status === 404;
                 this.error = true;
             });
     }

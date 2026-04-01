@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { rawToBan } from 'banano-unit-converter'; // kakitu uses same raw converter
+import { rawToBan } from 'banano-unit-converter';
 import { Subtype } from '@dev-ptera/nano-node-rpc';
 
 @Injectable({
@@ -26,7 +26,8 @@ export class UtilService {
         if (!raw || raw === '0') {
             return '0';
         }
-        let kshs = Number(rawToBan(raw))
+        // rawToBan divides by 10^29 (Banano); Kakitu uses 10^30 raw per KSHS
+        let kshs = (Number(rawToBan(raw)) / 10)
             .toFixed(params.precision)
             .replace(/\.?0+$/, '');
         if (params.comma) {
