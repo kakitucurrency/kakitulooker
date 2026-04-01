@@ -275,14 +275,19 @@ export class BlockComponent implements OnDestroy {
             return;
         }
 
-        if (hash.startsWith('ban_')) {
+        if (hash.startsWith('ban_') || hash.startsWith('kshs_') || hash.startsWith('nano_')) {
             return this._redirectToAddressPage(hash);
         }
 
         this._apiService
             .fetchBlock(hash)
             .then((blockResponse) => {
-                this.block = blockResponse.blocks[hash];
+                const block = blockResponse?.blocks?.[hash];
+                if (!block) {
+                    this.hasError = true;
+                    return;
+                }
+                this.block = block;
             })
             .catch((err) => {
                 console.error(err);
