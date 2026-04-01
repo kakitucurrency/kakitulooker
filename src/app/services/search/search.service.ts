@@ -31,11 +31,11 @@ export class SearchService {
 
         const result = this.validate(trimmed);
         if (!result.valid) {
-            this.searchError$.next(result.error);
+            this.searchError$.next((result as { valid: false; error: string }).error);
             return;
         }
 
-        this.search$.next({ search: result.search, openInNewWindow: openInNewWindow });
+        this.search$.next({ search: (result as { valid: true; search: string }).search, openInNewWindow: openInNewWindow });
     }
 
     /** Validates a search term as either a kshs_ address or a 64-char hex block hash. */
