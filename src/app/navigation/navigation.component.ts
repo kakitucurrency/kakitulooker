@@ -16,8 +16,6 @@ import { UtilService } from '@app/services/util/util.service';
 export class NavigationComponent {
     toolbarTitle: string;
     routeListener: Subscription;
-    showPrank = true;
-
     explorerNavGroup = EXPLORER_NAV_GROUP;
     networkNavGroup = NETWORK_NAV_GROUP;
 
@@ -30,18 +28,6 @@ export class NavigationComponent {
         private readonly _stateService: DrawerStateService
     ) {
         this._listenForRouteChanges();
-    }
-
-    isAprilFoolsDay(): boolean {
-        const today = new Date();
-        const month = today.getMonth(); // getMonth() returns 0-indexed months (0 for January, 1 for February, etc.)
-        const day = today.getDate();
-
-        return month === 3 && day === 1; // April is the 4th month, but 0-indexed, so April is represented as 3
-    }
-
-    ngOnInit(): void {
-        this.showPrank = this.isAprilFoolsDay();
     }
 
     navigate(url: string): void {
