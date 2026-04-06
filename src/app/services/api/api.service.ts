@@ -349,6 +349,35 @@ export class ApiService {
             .toPromise();
     }
 
+    // ── ERC20 / Base mainnet ──────────────────────────────────────────────────
+
+    /** Fetches KSHS token stats (name, symbol, supply, contract). */
+    async fetchTokenStats(): Promise<any> {
+        await this._hasPingedApi();
+        return this._http.get<any>(`${this.httpApi}/token/stats`).toPromise();
+    }
+
+    /** Fetches recent KSHS ERC20 transfers. */
+    async fetchRecentTransfers(pageKey?: string): Promise<any> {
+        await this._hasPingedApi();
+        const url = pageKey
+            ? `${this.httpApi}/token/transfers?pageKey=${pageKey}`
+            : `${this.httpApi}/token/transfers`;
+        return this._http.get<any>(url).toPromise();
+    }
+
+    /** Fetches KSHS balance + transfer history for an Ethereum address. */
+    async fetchEthAccount(address: string): Promise<any> {
+        await this._hasPingedApi();
+        return this._http.get<any>(`${this.httpApi}/account/${address}`).toPromise();
+    }
+
+    /** Fetches decoded KSHS transaction by hash. */
+    async fetchEthTransaction(hash: string): Promise<any> {
+        await this._hasPingedApi();
+        return this._http.get<any>(`${this.httpApi}/tx/${hash}`).toPromise();
+    }
+
     /** Fetches account insights & provides incremental updates to feed into a progress spinner. */
     async fetchAccountInsightsWS(address: string): Promise<Observable<number | InsightsDto>> {
         await this._hasPingedApi();

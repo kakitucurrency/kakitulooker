@@ -12,19 +12,14 @@ export class SearchService {
 
     constructor(router: Router, private readonly _utilService: UtilService) {
         this.searchEvents().subscribe((data: { search: string; openInNewWindow: boolean }) => {
+            const isAddress = this.isValidAddress(data.search);
+            const route = isAddress
+                ? `${APP_NAV_ITEMS.account.route}/${data.search}`
+                : `${APP_NAV_ITEMS.hash.route}/${data.search}`;
             if (data.openInNewWindow) {
-                if (data.search.startsWith('ban_') || this.isValidBNSDomain(data.search)) {
-                    const origin = window.location.origin;
-                    window.open(`${origin}/${APP_NAV_ITEMS.account.route}/${data.search}`, '_blank');
-                } else {
-                    window.open(`${origin}/${APP_NAV_ITEMS.hash.route}/${data.search}`, '_blank');
-                }
+                window.open(`${window.location.origin}/${route}`, '_blank');
             } else {
-                if (data.search.startsWith('ban_') || this.isValidBNSDomain(data.search)) {
-                    void router.navigate([`${APP_NAV_ITEMS.account.route}/${data.search}`]);
-                } else {
-                    void router.navigate([`${APP_NAV_ITEMS.hash.route}/${data.search}`]);
-                }
+                void router.navigate([route]);
             }
         });
     }
@@ -41,15 +36,17 @@ export class SearchService {
         this.search$.next({ search: trimmed, openInNewWindow });
     }
 
+    // Ethereum 0x address: 0x + 40 hex chars = 42 chars total
     isValidAddress(address: string): boolean {
-        return address && address.length === 64 && address.startsWith('ban_');
+        return /^0x[0-9a-fA-F]{40}$/.test(address);
     }
 
+    // Ethereum tx hash: 0x + 64 hex chars = 66 chars total
     isValidBlock(block: string): boolean {
-        return block && block.length === 64;
+        return /^0x[0-9a-fA-F]{64}$/.test(block);
     }
 
     isValidBNSDomain(bns: string): boolean {
-        return this._utilService.isValidBNSDomain(bns);
+        return false; // BNS not used in Kakitu
     }
 }

@@ -1,9 +1,8 @@
-import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation, OnInit } from '@angular/core';
 import { UtilService } from '@app/services/util/util.service';
 import { ViewportService } from '@app/services/viewport/viewport.service';
 import { ThemeService } from '@app/services/theme/theme.service';
 import { ApiService } from '@app/services/api/api.service';
-import { ExplorerSummaryDto } from '@app/types/dto';
 import { APP_NAV_ITEMS } from '../../navigation/nav-items';
 import { SearchBarComponent } from '../../navigation/search-bar/search-bar.component';
 
@@ -13,27 +12,15 @@ import { SearchBarComponent } from '../../navigation/search-bar/search-bar.compo
     styleUrls: ['./home.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
     @ViewChild('searchBar') searchBar: SearchBarComponent;
 
-    showHint: boolean;
+    showHint = false;
     routes = APP_NAV_ITEMS;
 
-    marketCap = '$xx,xxx,xx';
-
-    // @ts-ignore
-    summaryData = {
-        knownAccountsCount: 'xxx',
-        circulatingCount: 'x,xxx,xxx,xxx',
-        devFundCount: 'xxx,xxx,xxx',
-        totalPrincipalRepsCount: 'xx',
-        representativesOnlineCount: 'xx',
-        principalRepsOnlineCount: 'xx',
-        confirmedTransactionsCount: 'xxx,xxx,xxx',
-        ledgerSizeMB: 'xx.xx',
-        ledgerDatabaseType: '',
-        bananoPriceUsd: 'x.xx',
-    } as ExplorerSummaryDto;
+    tokenStats: any = null;
+    recentTransfers: any[] = [];
+    loading = true;
 
     constructor(
         public vp: ViewportService,
@@ -43,21 +30,18 @@ export class HomeComponent {
     ) {}
 
     ngOnInit(): void {
-        this._api
-            .fetchExplorerSummaryData()
-            .then((data) => {
-                Object.assign(this.summaryData, data);
-                if (data.ledgerSizeMB) {
-                    this.summaryData.ledgerSizeMB = Number((data.ledgerSizeMB / 1024).toFixed(1));
-                }
-                if (data.bananoPriceUsd) {
-                    const circulatingMarketValue = Number(data.bananoPriceUsd) * Number(data.circulatingCount);
-                    this.marketCap = `$${this._util.numberWithCommas(circulatingMarketValue.toFixed(0))}`;
-                    this.summaryData.bananoPriceUsd = data.bananoPriceUsd.toFixed(4) as any;
-                }
+        Promise.all([
+            this._api.fetchTokenStats(),
+            this._api.fetchRecentTransfers(),
+        ])
+            .then(([stats, transfers]) => {
+                this.tokenStats = stats;
+                this.recentTransfers = transfers?.transfers || [];
+                this.loading = false;
             })
             .catch((err) => {
                 console.error(err);
+                this.loading = false;
             });
     }
 
@@ -67,5 +51,23 @@ export class HomeComponent {
 
     search(e: MouseEvent): void {
         this.searchBar.searchCurrentValue(e.ctrlKey);
+    }
+
+    formatNumber(n: string | number): string {
+        return this._util.numberWithCommas(String(n));
+    }
+
+    shortAddress(addr: string): string {
+        if (!addr || addr.length < 10) return addr;
+        return `${addr.slice(0, 8)}...${addr.slice(-6)}`;
+    }
+
+    transferLabel(t: any): string {
+        const from = (t.from || '').toLowerCase();
+        const zero = '0x0000000000000000000000000000000000000000';
+        if (from === zero) return 'Mint';
+        const to = (t.to || '').toLowerCase();
+        if (to === zero) return 'Burn';
+        return 'Transfer';
     }
 }
