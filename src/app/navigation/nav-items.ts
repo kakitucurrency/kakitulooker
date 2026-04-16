@@ -75,6 +75,11 @@ export const accountNavItem = {
     route: 'account',
 };
 
+export const evmAccountNavItem = {
+    title: 'EVM Account',
+    route: 'evm-account',
+};
+
 export const APP_NAV_ITEMS = {
     home: homeNavItem,
     knownAccounts: knownAccountsNavItem,
@@ -88,6 +93,7 @@ export const APP_NAV_ITEMS = {
     mnemonicChecker: mnemonicCheckerNavItem,
     hash: hashNavItem,
     account: accountNavItem,
+    evmAccount: evmAccountNavItem,
 };
 
 export const EXPLORER_NAV_GROUP = [homeNavItem, walletsNavItem, knownAccountsNavItem];

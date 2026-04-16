@@ -40,18 +40,16 @@ export class NavigationComponent implements OnInit {
 
     ngOnInit(): void {
         this._searchService.searchEvents().subscribe((data: { search: string; openInNewWindow: boolean }) => {
+            const route = data.search.startsWith('kshs_')
+                ? APP_NAV_ITEMS.account.route
+                : data.search.startsWith('0x')
+                ? APP_NAV_ITEMS.evmAccount.route
+                : APP_NAV_ITEMS.hash.route;
+
             if (data.openInNewWindow) {
-                if (data.search.startsWith('kshs_')) {
-                    window.open(`${window.location.origin}/${APP_NAV_ITEMS.account.route}/${data.search}`, '_blank');
-                } else {
-                    window.open(`${window.location.origin}/${APP_NAV_ITEMS.hash.route}/${data.search}`, '_blank');
-                }
+                window.open(`${window.location.origin}/${route}/${data.search}`, '_blank');
             } else {
-                if (data.search.startsWith('kshs_')) {
-                    void this._router.navigate([`${APP_NAV_ITEMS.account.route}/${data.search}`]);
-                } else {
-                    void this._router.navigate([`${APP_NAV_ITEMS.hash.route}/${data.search}`]);
-                }
+                void this._router.navigate([`${route}/${data.search}`]);
             }
         });
 

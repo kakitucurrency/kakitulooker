@@ -13,6 +13,7 @@ import { MnemonicCheckerComponent } from '@app/pages/mnemonic-checker/mnemonic-c
 import { HomeComponent } from '@app/pages/home/home.component';
 import { AccountComponent } from '@app/pages/account/account.component';
 import { HashComponent } from '@app/pages/hash/hash.component';
+import { EvmAccountComponent } from '@app/pages/evm-account/evm-account.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
     { path: `explorer/${APP_NAV_ITEMS.account.route}/:id/history`, component: AccountComponent }, // Match Explorer legacy path
     { path: `explorer/${APP_NAV_ITEMS.account.route}/:id`, component: AccountComponent }, // Match Explorer legacy path
     { path: `${APP_NAV_ITEMS.account.route}/:id`, component: AccountComponent },
+    { path: `${APP_NAV_ITEMS.evmAccount.route}/:id`, component: EvmAccountComponent },
     { path: `${APP_NAV_ITEMS.hash.route}/:id`, component: HashComponent },
     { path: `explorer/${APP_NAV_ITEMS.hash.route}/:id`, component: HashComponent }, // Match Explorer legacy path
     { path: `explorer/auto/:id`, component: HashComponent }, // Match Explorer legacy path

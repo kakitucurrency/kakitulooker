@@ -1,0 +1,162 @@
+.evm-account-root {
+    .evm-account-address {
+        word-break: break-all;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .evm-spinner-wrap {
+        display: flex;
+        justify-content: center;
+        padding: 48px 0;
+    }
+
+    .evm-error-msg {
+        color: var(--color-warn);
+        padding: 16px 0;
+        font-size: 14px;
+    }
+
+    .evm-balance-card {
+        margin: 24px 0;
+        padding: 20px 24px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.04);
+
+        .evm-balance-label {
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.6;
+            margin-bottom: 6px;
+        }
+
+        .evm-balance-value {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .evm-basescan-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            text-decoration: none;
+            opacity: 0.7;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    .evm-section-title {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.7;
+        margin-bottom: 12px;
+
+        .evm-section-subtitle {
+            font-size: 11px;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0;
+            opacity: 0.6;
+            margin-left: 6px;
+        }
+    }
+
+    .evm-empty {
+        opacity: 0.6;
+        font-size: 14px;
+        padding: 24px 0;
+    }
+
+    .evm-tx-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+    }
+
+    .evm-tx-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .evm-tx-direction {
+        width: 40px;
+        text-align: center;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 3px 6px;
+        border-radius: 4px;
+        flex-shrink: 0;
+
+        &.evm-tx-in {
+            background: rgba(76, 175, 80, 0.15);
+            color: #4caf50;
+        }
+
+        &.evm-tx-out {
+            background: rgba(244, 67, 54, 0.15);
+            color: #f44336;
+        }
+    }
+
+    .evm-tx-details {
+        flex: 1;
+        min-width: 0;
+
+        .evm-tx-amount {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .evm-tx-meta {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 2px;
+
+            .link {
+                cursor: pointer;
+                text-decoration: underline;
+                font-family: monospace;
+            }
+        }
+
+        .evm-tx-block {
+            font-size: 11px;
+            opacity: 0.5;
+            margin-top: 2px;
+        }
+    }
+
+    .evm-tx-link {
+        color: inherit;
+        opacity: 0.4;
+        flex-shrink: 0;
+
+        &:hover {
+            opacity: 0.9;
+        }
+
+        mat-icon {
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+        }
+    }
+}

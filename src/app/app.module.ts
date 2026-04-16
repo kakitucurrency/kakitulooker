@@ -15,6 +15,7 @@ import { MnemonicCheckerModule } from '@app/pages/mnemonic-checker/mnemonic-chec
 import { HomeModule } from '@app/pages/home/home.module';
 import { AccountModule } from '@app/pages/account/account.module';
 import { HashModule } from '@app/pages/hash/hash.module';
+import { EvmAccountModule } from '@app/pages/evm-account/evm-account.module';
 
 @Component({
     selector: 'app-root',
@@ -27,6 +28,7 @@ export class AppComponent {}
     imports: [
         AccountModule,
         AppRoutingModule,
+        EvmAccountModule,
         BookmarksModule,
         HashModule,
         HttpClientModule,

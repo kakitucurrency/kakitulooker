@@ -38,7 +38,7 @@ export class SearchService {
         this.search$.next({ search: (result as { valid: true; search: string }).search, openInNewWindow: openInNewWindow });
     }
 
-    /** Validates a search term as either a kshs_ address or a 64-char hex block hash. */
+    /** Validates a search term as a kshs_ address, EVM 0x address, or 64-char block hash. */
     validate(input: string): SearchResult {
         if (input.startsWith('kshs_')) {
             // kshs_ addresses are 65 characters: "kshs_" (5) + 60 alphanumeric chars
@@ -48,11 +48,16 @@ export class SearchService {
             return { valid: true, search: input };
         }
 
+        // EVM addresses: 0x followed by exactly 40 hex characters
+        if (/^0x[0-9a-fA-F]{40}$/.test(input)) {
+            return { valid: true, search: input.toLowerCase() };
+        }
+
         // Block hashes: exactly 64 hex characters (uppercase)
         if (/^[0-9a-fA-F]{64}$/.test(input)) {
             return { valid: true, search: input.toUpperCase() };
         }
 
-        return { valid: false, error: 'Invalid input. Enter a kshs_ address or a 64-character block hash.' };
+        return { valid: false, error: 'Invalid input. Enter a kshs_ address, an EVM 0x address, or a 64-character block hash.' };
     }
 }

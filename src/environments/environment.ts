@@ -6,6 +6,8 @@ export const environment = {
     megaphone: false,
     production: false,
     api: 'http://192.168.1.200:3000/kakitulooker',
+    baseRpcUrl: 'https://mainnet.base.org',
+    kshs_contract: '0xe5E6b4b1054678DdCa4623E6Ce7214b1276A1946',
 };
 
 /*
