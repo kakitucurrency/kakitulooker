@@ -14,8 +14,10 @@ export interface EvmTransfer {
 
 const TRANSFER_SIG = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef';
 const DECIMALS = 18;
-// Scan last ~14 days of Base blocks (~2s/block)
-const BLOCKS_TO_SCAN = 600_000;
+// Public Base RPC caps eth_getLogs at 2000 blocks per call.
+// We scan 10 batches × 2000 blocks = 20,000 blocks ≈ 11 hours of history.
+const CHUNK_SIZE = 2_000;
+const CHUNKS = 10;
 
 @Injectable({
     providedIn: 'root',
@@ -30,42 +32,42 @@ export class EvmService {
     async getKshsBalance(address: string): Promise<string> {
         const paddedAddr = address.slice(2).toLowerCase().padStart(64, '0');
         const data = '0x70a08231' + paddedAddr; // balanceOf(address)
-
         const result = await this._jsonRpc<string>('eth_call', [{ to: this.contract, data }, 'latest']);
         return this._formatAmount(BigInt(result));
     }
 
-    /** Returns transfer events involving the address from the last ~14 days. */
+    /** Returns KSHS transfer events for the address across the last ~11 hours. */
     async getTransfers(address: string): Promise<EvmTransfer[]> {
         const latestHex = await this._jsonRpc<string>('eth_blockNumber', []);
         const latest = parseInt(latestHex, 16);
-        const fromBlock = '0x' + Math.max(0, latest - BLOCKS_TO_SCAN).toString(16);
-        const toBlock = 'latest';
-
         const padded = '0x' + address.slice(2).toLowerCase().padStart(64, '0');
 
-        const [sentLogs, receivedLogs] = await Promise.all([
-            this._jsonRpc<any[]>('eth_getLogs', [{
-                fromBlock,
-                toBlock,
-                address: this.contract,
-                topics: [TRANSFER_SIG, padded],
-            }]),
-            this._jsonRpc<any[]>('eth_getLogs', [{
-                fromBlock,
-                toBlock,
-                address: this.contract,
-                topics: [TRANSFER_SIG, null, padded],
-            }]),
-        ]);
+        // Build block ranges for each chunk, most-recent first
+        const ranges: Array<{ from: number; to: number }> = [];
+        for (let i = 0; i < CHUNKS; i++) {
+            const to = latest - i * CHUNK_SIZE;
+            const from = Math.max(0, to - CHUNK_SIZE + 1);
+            ranges.push({ from, to });
+        }
+
+        // Fetch all chunks in parallel (sent + received per chunk)
+        const chunkResults = await Promise.all(
+            ranges.map(({ from, to }) =>
+                Promise.all([
+                    this._getLogs(padded, from, to, 'sent'),
+                    this._getLogs(padded, from, to, 'received'),
+                ])
+            )
+        );
 
         const addr = address.toLowerCase();
-        const all: EvmTransfer[] = [
-            ...sentLogs.map((log) => this._parseLog(log, addr)),
-            ...receivedLogs.map((log) => this._parseLog(log, addr)),
-        ];
+        const all: EvmTransfer[] = [];
+        for (const [sent, received] of chunkResults) {
+            all.push(...sent.map((log) => this._parseLog(log, addr)));
+            all.push(...received.map((log) => this._parseLog(log, addr)));
+        }
 
-        // Deduplicate (an address sending to itself appears in both)
+        // Deduplicate (self-transfers appear in both sent + received)
         const seen = new Set<string>();
         const deduped = all.filter((t) => {
             const key = t.txHash + t.direction;
@@ -75,6 +77,18 @@ export class EvmService {
         });
 
         return deduped.sort((a, b) => b.blockNumber - a.blockNumber);
+    }
+
+    private _getLogs(paddedAddr: string, fromBlock: number, toBlock: number, direction: 'sent' | 'received'): Promise<any[]> {
+        const topics = direction === 'sent'
+            ? [TRANSFER_SIG, paddedAddr]
+            : [TRANSFER_SIG, null, paddedAddr];
+        return this._jsonRpc<any[]>('eth_getLogs', [{
+            fromBlock: '0x' + fromBlock.toString(16),
+            toBlock: '0x' + toBlock.toString(16),
+            address: this.contract,
+            topics,
+        }]);
     }
 
     private _parseLog(log: any, viewerAddress: string): EvmTransfer {
